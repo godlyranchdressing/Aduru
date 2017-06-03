@@ -1,0 +1,1 @@
+Assets. Assets. Assets. I have no idea how to work with gradients in Inkscape. The GTK2 assets can be used for the shell theme's buttons but these need to be spliced in order to have just *some* corners have rounded corners as opposed to all corners.
