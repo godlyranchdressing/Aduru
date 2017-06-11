@@ -11,11 +11,11 @@
       .popup-menu-item {
         // no padding just looks weird so we're going to use the remaining spacing to make the menu items themselves look nicer
         padding: 0 6px;
-        color: $panel_fg;
+        color: $panel_fg_color;
 
         &:hover {
           // hover effect consistent with regular panel buttons
-          color: lighten($panel_fg, 10%);
+          color: lighten($panel_fg_color, 10%);
         }
 
         &:active,
@@ -23,8 +23,8 @@
         &:focus {
           // same as above
           background-color: rgba(0, 0, 0, 0.01);
-          box-shadow: inset 0 -2px 0 lighten($selected_bg_color, 5%);
-          color: lighten($panel_fg, 10%);
+          box-shadow: inset 0 -2px 0 lighten($primary_color, 5%);
+          color: lighten($panel_fg_color, 10%);
         }
       }
     }
@@ -89,8 +89,7 @@
 @mixin remove_default_hover_effects {
   // Get rid of default hover effects -> only applies to dash to dock because not everyone uses dash to dock
   #dashtodockContainer #dash {
-    .app-well-app,
-    .app-well-app-running-dot {
+    .app-well-app {
       // the background can't be transparent or else box shadows (and all the fancy effects we make with it) won't render
       background-color: rgba(0, 0, 0, 0.01);
       color: transparent;
@@ -98,9 +97,7 @@
       &:active,
       &:focus,
       &:hover {
-        background-color: rgba(0, 0, 0, 0.01);
-
-        StWidget {
+        .overview-icon {
           background-color: transparent;
         }
       }
@@ -115,77 +112,66 @@
     transition-duration: 250ms;
   }
 
-  @each $g in left right top bottom {
+  #dashtodockContainer {
+    .app-well-app-running-dot {
+      //running apps indicator
+      width: 25px;
+      height: 3px;
+      background-color: $primary_color;
+      box-shadow: inset 0 -2px $primary_color;
+      margin-bottom: 0px;
+
+    }
+
     @for $i from 1 through 4 {
-      // variables still have to be declared before being assigned - just like my programming languages!
-      $_shadow: null;
-      $_shadow_focused: null;
-      $_dash_height: 5;
-      $_dash_height_focus: $_dash_height * 1.5;
-
-      @if $g == "left" {
-        // if the dock is pinned to the left ☜(ﾟ∀ﾟ☜)
-        $_shadow: inset #{$_dash_height}px 0;
-        $_shadow_focused: inset #{$_dash_height_focus}px 0;
-      }
-
-      @if $g == "right" {
-        // to the right (☞ﾟ∀ﾟ)☞
-        $_shadow: inset -#{$_dash_height}px 0;
-        $_shadow_focused: inset #{$_dash_height_focus}px 0;
-      }
-
-      @if $g == "bottom" {
-        // now down ☟(˚▽˚)☟
-        $_shadow: inset 0 -#{$_dash_height}px;
-        $_shadow_focused: inset 0 -#{$_dash_height_focus}px 0;
-      }
-
-      @if $g == "top" {
-        // and up ☝(˚▽˚)☝
-        $_shadow: inset 0 #{$_dash_height}px;
-        $_shadow_focused: inset 0 #{$_dash_height_focus}px 0;
-      }
-
-      #dashtodockContainer.#{$g} {
-        #dash {
-          // the dash's appearance
-          background-color: rgba(0, 0, 0, 0.01);
-          box-shadow: $_shadow $_bubble_bg_color;
-        }
-
-        .dash-item-container {
-          > StWidget.running#{$i} {
-            // running items look like this
-            background-color: rgba(0, 0, 0, 0.01);
-            box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
-
-            &.focused,
-            &:active {
-              // running and focused items (the currenlty focused window) look like this
-              background-color: rgba(0, 0, 0, 0.01);
-              box-shadow: $_shadow $selected_bg_color;
-            }
-
-            &:hover {
-              // hovering over a running item looks like this
-              background-color: rgba(0, 0, 0, 0.01);
-              box-shadow: $_shadow_focused $selected_bg_color;
-            }
-          }
-
-          > StWidget {
-            // unopened or regular items look like this (in most cases there should be no styling)
-            background-color: rgba(0, 0, 0, 0.01);
-
-            &:active,
-            &:hover {
-              // hovering over an unopened item looks like this (should mirror the running item look from above imo)
-              background-color: rgba(0, 0, 0, 0.01);
-              box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
-            }
+      .running#{$i} {
+        &.focused,
+        &:active {
+          .app-well-app-running-dot {
+            width: 25px;
+            box-shadow: inset 0 -2px $green;
           }
         }
+
+        &:hover {
+          .app-well-app-running-dot {
+            width: 25px;
+            box-shadow: inset 0 -2px $green;
+          }
+        }
+      }
+    }
+  }
+
+  @each $g in left right top bottom {
+    // variables still have to be declared before being assigned - just like my programming languages!
+    $slice: null;
+
+    @if $g == "left" {
+      // if the dock is pinned to the left ☜(ﾟ∀ﾟ☜)
+      $slice: 8 4 2 4;
+    }
+
+    @if $g == "right" {
+      // to the right (☞ﾟ∀ﾟ)☞
+      $slice: 8 8 2 4;
+    }
+
+    @if $g == "bottom" {
+      // now down ☟(˚▽˚)☟
+      $slice: 4 2 4 8;
+    }
+
+    @if $g == "top" {
+      // and up ☝(˚▽˚)☝
+      $slice: 4 2 4 8;
+    }
+
+    #dashtodockContainer.#{$g} {
+      #dash {
+        // the dash's appearance
+        background-color: transparent;
+        border-image: url("assets/dash/dash-#{$g}.svg") $slice;
       }
     }
   }
@@ -213,7 +199,7 @@
         // the "inner" part of the launcher, you can ignore this in most cases
         background-color: transparent;
         box-shadow: none;
-        color: $selected_bg_color;
+        color: $primary_color;
       }
     }
   }
@@ -229,7 +215,7 @@
         }
 
         StWidget {
-          color: $selected_bg_color;
+          color: $primary_color;
         }
       }
     }
