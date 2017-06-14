@@ -1,0 +1,36 @@
+# Based on Bridge by ScionicSpectre
+# vim:set ts=2 sw=2 sts=2 ai et:
+#
+# This is the GTK+ 2 version of Adwaita. It's whole purpose is to look as the
+# GTK+ 3 version as much as possible until GTK+ 2 dies completely.
+#
+# Note: comments for explaining styles are on the bottom of each file beside the
+# widget matches.
+
+# Declare the colours used throughout the theme.
+# There shouldn't be any fiddling with them in the theme files themselves in
+# order to not mess up the dark theme.
+
+# Text/base
+gtk-color-scheme = "base_color:#242429"
+# Foreground/background
+gtk-color-scheme = "fg_color:#f7f7f7\nbg_color:#303037"
+# Selected foreground/background
+gtk-color-scheme = "selected_fg_color:#ffffff\nselected_bg_color:#30b4e9"
+# Insensitive foreground/background
+gtk-color-scheme = "insensitive_fg_color:#949497\ninsensitive_bg_color:#2B2B31"
+# Links
+gtk-color-scheme = "link_color:#48B259\nvisited_link_color:#2B6935"
+# Treeview headers
+gtk-color-scheme = "column_header_color:#8E8E90\nhover_column_header_color:#c3c3c4"
+# Window decoration
+gtk-color-scheme = "window_color:#303037"
+# Set GTK settings
+gtk-auto-mnemonics              = 1
+gtk-primary-button-warps-slider = 1
+
+# And hand over the control to the theme files
+include "main.rc"
+include "apps.rc"
+include "hacks.rc"
+include "hacks-dark.rc"

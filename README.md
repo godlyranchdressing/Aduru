@@ -1,5 +1,5 @@
 # Aduru
-Yet another Adwaita derivative. This one (mostly) keeps the liberal padding and goes back to older versions of Adwaita for some of its design cues while also taking aspects of Suru/Unity 8. Very much a work in progress for now.
+An Adwaita derivative that's a mishmash of some of Adwaita's older design cues and Suru/Unity 8.
 
 ## Preview
 ![Image One](preview-1.png)

@@ -1,0 +1,106 @@
+// Tweak Tool
+list.tweak-categories {
+  background-image: image($sidebar_bg_color);
+
+  separator {
+    min-height: 0px;
+    background: transparent;
+  }
+}
+
+#ShellExtensionTweakGroup button {
+  // style the suggested actions them as destructive buttons
+  &.text-button {
+    &.suggested-action {
+      @include button(normal, $destructive_color, white);
+
+      &:hover {
+        @include button(hover, $destructive_color, white);
+      }
+
+      &:active {
+        @include button(active, $destructive_color, white);
+      }
+
+      &:disabled {
+        @include button(disabled, $destructive_color);
+      }
+    }
+  }
+}
+
+// Nautilus
+.nautilus-window {
+  headerbar > revealer button.button.popup.toggle {
+    color: $progress_color;
+
+    &:checked {
+      color: darken($progress_color, 10%);
+    }}
+
+    .floating-bar {
+      background: $floating_element_bg_color;
+    }
+}
+
+// Builder
+
+window.workbench {
+  docktabstrip {
+    // analogous to notebook header
+    docktab {
+      // analogous to notebook tabs
+      @extend %tab;
+
+      box-shadow: _shadow_border(0, 0, 1, 1, $thicker: true);
+
+      &:hover, &:checked {
+        box-shadow: _shadow_border(0, 0, 0, 1, $thicker: true);
+      }
+    }
+  }
+
+  layouttabbar {
+    box-shadow: _shadow_border(0, 0, 1, 1);
+
+    layouttab button {
+      &, &:backdrop {
+        @include button(undecorated);
+        @include colored_focus;
+      }
+    }
+  }
+
+  popover {
+    list row {
+      label {
+        padding: 0 5px;
+      }
+    }
+
+    button.model {
+      transition: $button_transition;
+      min-height: 28px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 0px;
+      outline-offset: -2px;
+    }
+  }
+
+  box.popover-action-area .text-button {
+    greeter frame, layout > stack {
+      border: 1px solid $border_color;
+    }
+  }
+}
+
+// Software
+
+.installed-overlay-box {
+  background-image: image($success_color);
+}
+
+headerbar button.toolbar-primary-buttons-software {
+  @include button(normal);
+}

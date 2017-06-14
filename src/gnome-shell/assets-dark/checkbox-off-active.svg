@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="5.2915893mm"
+   height="5.2916665mm"
+   viewBox="0 0 5.2915893 5.2916665"
+   version="1.1"
+   id="svg5359"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="checkbox-off-active.svg">
+  <defs
+     id="defs5353">
+    <linearGradient
+       osb:paint="gradient"
+       id="linearGradient5598">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop5682" />
+      <stop
+         id="stop5684"
+         offset="0.2"
+         style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop
+         id="stop5686"
+         offset="0.89999998"
+         style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop
+         style="stop-color:#e6e6e6;stop-opacity:1"
+         offset="1"
+         id="stop5688" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5598-0"
+       osb:paint="gradient">
+      <stop
+         id="stop5590"
+         offset="0"
+         style="stop-color:#ffffff;stop-opacity:1" />
+      <stop
+         style="stop-color:#f7f7f7;stop-opacity:1"
+         offset="0.2"
+         id="stop5592" />
+      <stop
+         style="stop-color:#f7f7f7;stop-opacity:1"
+         offset="0.89999998"
+         id="stop5594" />
+      <stop
+         id="stop5596"
+         offset="1"
+         style="stop-color:#ededed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="23.608458"
+     inkscape:cx="6.8496118"
+     inkscape:cy="13.018923"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1068"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5356">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-35.641843,-140.83967)">
+    <g
+       style="display:inline;stroke-width:0.80000585"
+       id="checkbox-active"
+       inkscape:label="#g14325"
+       transform="matrix(0.33072434,0,0,0.33072917,30.019529,130.79801)">
+      <g
+         transform="translate(0,-3.9660404e-6)"
+         style="display:inline;stroke-width:0.80000585"
+         id="g5400-0-5-1">
+        <rect
+           ry="2.3999999"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#222227;fill-opacity:1;fill-rule:nonzero;stroke:#18181c;stroke-width:0.80000579;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+           id="rect5147-9-1-5-7-6-4-8-7"
+           width="15"
+           height="15"
+           x="17.499708"
+           y="30.862186"
+           rx="2.4000349" />
+      </g>
+      <rect
+         y="30.362183"
+         x="17"
+         height="16"
+         width="16"
+         id="rect14725-8"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:none;stroke-width:1.60001171;marker:none;enable-background:accumulate" />
+    </g>
+  </g>
+</svg>

@@ -1,15 +1,12 @@
 # GTK2
 ----------
-- Assets need to be organized.
-- The dark variant needs to be worked on.
-
-# GTK3
-----------
-- The slider button for the dark theme is too dark.
-- The dialog box buttons have some crazy amount padding that needs to be reduced.
-- Decrease the minimum height for headerbar buttons.
-- Tab box shadows don't cover all their edges in *some* notebooks.
+- GTK2 asset sheets might have a couple Adwaita colors floating around in the smaller elements
+- Give entries base color as their background
+- Slider and scale: the slider has empty space around it while scale highlight looks blurry
 
 # Shell
 ----------
-- Remove leftover Minwaita assets and update the assets to match Aduru's.
+- Update assets
+- Popover menu border color
+- Notification banner has some aliasing problems
+- See if a hacky solution for suggested and destructive actions can be done
