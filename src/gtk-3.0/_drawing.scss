@@ -572,7 +572,7 @@
   }
 }
 
-@mixin headerbar_fill($c: if($variant == "light", $base_color, $bg_color), $hc: $top_hilight, $ov: none) {
+@mixin headerbar_fill($c: if($variant == "light" and $darker == false, $base_color, $dark_bg_color), $hc: if($darker == false, $top_hilight, transparentize($fg_color, 0.93)), $ov: none) {
   //
   // headerbar fill
   //
@@ -580,7 +580,7 @@
   // $hc: top highlight color
   // $ov: a background layer for background shorthand (hence no commas!)
   //
-  $headerbar_fill: if($variant == "light", linear-gradient(to bottom, $c, darken($c, 4%) 60%, darken($c, 10%)), linear-gradient(to bottom, darken($c, 2%), darken($c, 4%) 60%, darken($c, 6%))) !global;
+  $headerbar_fill: if($variant == "light" and $darker == false, linear-gradient(to bottom, $c, darken($c, 4%) 60%, darken($c, 10%)), linear-gradient(to bottom, darken($c, 2%), darken($c, 4%) 60%, darken($c, 6%))) !global;
 
   background-image: $headerbar_fill;
 

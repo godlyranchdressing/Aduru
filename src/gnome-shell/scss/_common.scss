@@ -19,7 +19,7 @@
 /* GLOBALS */
 $font-size: 11;
 $menu_slice: 16 16 16 16;
-$font-family: Overpass, Cantarell, Sans-Serif;
+$font-family: Cantarell, Sans-Serif;
 $_wm_border: if($variant == "light", transparentize(black, 0.77), transparentize($border_color, 0.1));
 $_shadow_border: 0 2px 4px 1px transparentize(black, 0.5), 0 0 0 1px $_wm_border;
 
@@ -42,10 +42,6 @@ stage {
   padding: 4px 32px;
 
   @include button(normal);
-
-  &:hover {
-    border: 5px solid red !important;
-  }
 }
 
 .modal-dialog-linked-button {
@@ -178,8 +174,8 @@ StScrollBar {
 
 /* Switches */
 .toggle-switch {
-  width: 65px;
-  height: 22px;
+  width: 56px;
+  height: 26px;
   background-size: contain;
 }
 
@@ -217,6 +213,7 @@ StScrollBar {
 
 .modal-dialog {
   @extend %osd-panel;
+
   color: $fg_color;
 
   .modal-dialog-content-box {
@@ -613,7 +610,7 @@ StScrollBar {
 
   //defined globally in the TOP BAR
   .popup-sub-menu {
-    background-color: $osd_bg_color;
+    background-color: mix($bg_color, $base_color, 50%);
     box-shadow: inset 0 -1px 0 $border_color;
   }
 
@@ -693,6 +690,7 @@ StScrollBar {
   -arrow-base: 24px;
   -arrow-rise: 11px;
   -arrow-box-shadow: 0 1px 3px black;
+
   //dreaming. bug #689995
 }
 
@@ -771,6 +769,7 @@ StScrollBar {
 .resize-popup,
 .switcher-list {
   @extend %osd-panel;
+
   padding: 12px !important;
 }
 
@@ -898,7 +897,8 @@ StScrollBar {
 #panel {
   font-weight: bold;
   height: 2.05em;
-  background-color: black;
+  background-color: $panel_bg_color;
+  box-shadow: inset 0 -1px black;
 
   &.lock-screen,
   &.login-screen,
@@ -931,8 +931,9 @@ StScrollBar {
 
   .panel-button {
     font-weight: bold;
-    color: $panel_fg_color;
-    box-shadow: inset 0 0 0 if($variant == "light", $primary_color, darken($primary_color, 5%));
+    color: transparentize($panel_fg_color, 0.1);
+    transition-duration: 250ms;
+    box-shadow: inset 0 0 0 0 transparent;
 
     .app-menu-icon {
       -st-icon-style: symbolic;
@@ -940,63 +941,62 @@ StScrollBar {
       margin: 0;
     }
 
-    &:active,
-    &:checked,
-    &:focus,
-    &:hover,
-    &:overview {
-      // Trick due to St limitations. It needs a background to draw
-      // a box-shadow
-      background-color: rgba(0, 0, 0, 0.01);
-      color: $panel_fg_color;
-      box-shadow: inset 0 -2px 0 $primary_color;
-
-      & > .system-status-icon {
-        icon-shadow: black 0 2px 2px;
-      }
-    }
-
-    .popup-menu-arrow {
-      width: 0;
-      height: 0;
-    }
-
-    .system-status-icon {
-      icon-size: 1.09em;
-    }
-
-    .lock-screen &,
-    .login-screen &,
-    .unlock-screen & {
-      color: lighten($fg_color, 10%);
-
       &:active,
+      &:checked,
       &:focus,
-      &:hover {
+      &:hover,
+      &:overview {
+        // Trick due to St limitations. It needs a background to draw
+        // a box-shadow
+        background-color: rgba(0, 0, 0, 0.01);
+        color: $panel_fg_color;
+        box-shadow: inset 0 -2px 0 $primary_color;
+
+        & > .system-status-icon {
+          icon-shadow: black 0 2px 2px;
+        }
+      }
+
+      .popup-menu-arrow {
+        width: 0;
+        height: 0;
+      }
+
+      .system-status-icon {
+        icon-size: 1.09em;
+      }
+
+      .lock-screen &,
+      .login-screen &,
+      .unlock-screen & {
         color: lighten($fg_color, 10%);
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: lighten($fg_color, 10%);
+        }
       }
     }
-  }
 
-  @include uniform_panel_spacing;
+    @include uniform_panel_spacing;
 
-  .clock-display {
-    // style the notification dot
-    StBoxLayout:last-child > StLabel:last-child {
-      color: $primary_color;
+    .clock-display {
+      // style the notification dot
+      StBoxLayout:last-child > StLabel:last-child {
+        color: $primary_color;
+      }
+    }
+
+    // spacing between power icon and (optional) percentage label
+    .power-status.panel-status-indicators-box {
+      spacing: 0;
+    }
+
+    .screencast-indicator {
+      color: $warning_color;
     }
   }
-
-  // spacing between power icon and (optional) percentage label
-  .power-status.panel-status-indicators-box {
-    spacing: 0;
-  }
-
-  .screencast-indicator {
-    color: $warning_color;
-  }
-}
-
 // calendar popover
 
 #calendarArea {
@@ -1121,9 +1121,10 @@ StScrollBar {
 
 .pager-button {
   color: white;
+  transition-duration: 250ms;
   background-color: transparent;
   width: 32px;
-  border-radius: 4px;
+  border-radius: 9999px;
 
   &:focus,
   &:hover {
@@ -1137,19 +1138,59 @@ StScrollBar {
 
 .calendar-change-month-back {
   //arrow back
-  background-image: url("resource:///org/gnome/shell/theme/calendar-arrow-left.svg");
+  & {
+    background-image: url("assets/calendar-arrow-left.svg");
+  }
+
+  &:hover {
+    background-image: url("assets/calendar-arrow-left-hover.svg");
+  }
+
+  &:active {
+    background-image: url("assets/calendar-arrow-left-active.svg");
+  }
 
   &:rtl {
-    background-image: url("resource:///org/gnome/shell/theme/calendar-arrow-right.svg");
+    & {
+      background-image: url("assets/calendar-arrow-right.svg");
+    }
+
+    &:hover {
+      background-image: url("assets/calendar-arrow-right-hover.svg");
+    }
+
+    &:active {
+      background-image: url("assets/calendar-arrow-right-active.svg");
+    }
   }
 }
 
 .calendar-change-month-forward {
   //arrow foreward
-  background-image: url("resource:///org/gnome/shell/theme/calendar-arrow-right.svg");
+  & {
+    background-image: url("assets/calendar-arrow-right.svg");
+  }
+
+  &:hover {
+    background-image: url("assets/calendar-arrow-right-hover.svg");
+  }
+
+  &:active {
+    background-image: url("assets/calendar-arrow-right-active.svg");
+  }
 
   &:rtl {
-    background-image: url("resource:///org/gnome/shell/theme/calendar-arrow-left.svg");
+    & {
+      background-image: url("assets/calendar-arrow-left.svg");
+    }
+
+    &:hover {
+      background-image: url("assets/calendar-arrow-left-hover.svg");
+    }
+
+    &:active {
+      background-image: url("assets/calendar-arrow-left-active.svg");
+    }
   }
 }
 
@@ -1509,9 +1550,9 @@ StScrollBar {
 
 /* OVERVIEW */
 #overview {
+  background: $overview_bg url("assets/noise-texture.png");
+  background-repeat: repeat;
   spacing: 24px;
-
-  //
 }
 
 .overview-controls {
@@ -1649,8 +1690,8 @@ StScrollBar {
 #dash {
   font-size: 9pt;
   color: $osd_fg_color;
-  background-color: $dash_bg;
-  border: 1px solid $dash_border;
+  background-color: $overview_bg;
+  border: 1px solid $overview_border_color;
   border-left: 0;
   border-radius: 0 9px 9px 0;
 
@@ -1735,7 +1776,7 @@ StScrollBar {
     @extend %icon_tile;
   }
 
-  &:focus .overview-icon, &:hover .overview-icon{
+  &:focus .overview-icon, &:hover .overview-icon {
     @extend %icon_tile:hover;
   }
 
@@ -1862,8 +1903,8 @@ StScrollBar {
 .workspace-thumbnails {
   //container ala dash
   visible-width: 32px;
-  background-color: $dash_bg;
-  border-color: $dash_border;
+  background-color: $overview_bg;
+  border-color: $overview_border_color;
 
   //amount visible before hover
   spacing: 12px;
@@ -1918,6 +1959,14 @@ StScrollBar {
   background-color: $base_color;
   border-radius: $standard_radius;
   box-shadow: none;
+
+  &:hover{
+    background-color: darken($base_color, 2.5%);
+  }
+
+  &:active{
+    background-color: darken($base_color, 5%);
+  }
 
   .notification-icon {
     padding: 5px;
@@ -2511,7 +2560,7 @@ $legacy_icon_size: 24px;
 }
 
 #lockDialogGroup {
-  background: #2e3436 url("resource:///org/gnome/shell/theme/noise-texture.png");
+  background: $overview_bg url("resource:///org/gnome/shell/theme/noise-texture.png");
   background-repeat: repeat;
 }
 

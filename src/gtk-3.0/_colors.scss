@@ -8,17 +8,18 @@ $fg_color: if($variant == "light", $dark_fg_color, $light_fg_color);
 $selected_fg_color: #ffffff;
 $primary_color: $blue;
 $accent_color: $green;
+$headerbar_fg_color: if($darker == true, $light_fg_color, $fg_color);
+$headerbar_bg_color: if($darker == true, $dark_bg_color, $bg_color);
 //
 $selected_border_color: darken($primary_color, if($variant == "light", 30%, 20%));
 $border_color: if($variant == "light", $light_border_color, $dark_border_color);
-$alt_border_color: if($variant == "light", darken($bg_color, 35%), darken($bg_color, 17%));
+$alt_border_color: if($variant == "light", $light_alt_border_color, $dark_alt_border_color);
 $border_edge: if($variant == "light", transparentize(white, 0.2), transparentize($fg_color, 0.93));
 $link_color: $green;
 $link_visited_color: darken($link_color, 20%);
 $top_hilight: $border_edge;
 $dark_fill: mix($border_color, $bg_color, 50%);
 $menu_color: if($variant == "light", $base_color, mix($bg_color, $base_color, 20%));
-$floating_element_bg_color: transparentize($base_color, 0.15);
 $hover: if(variant == light, transparentize($fg_color, 0.9), transparentize($fg_color, 0.95));
 $active: if(variant == light, transparentize($fg_color, 0.85), transparentize($fg_color, 0.90));
 
@@ -45,27 +46,29 @@ $osd_insensitive_bg_color: transparentize(mix($osd_fg_color, opacify($osd_bg_col
 $osd_insensitive_fg_color: mix($osd_fg_color, opacify($osd_bg_color, 1), 50%);
 $osd_border_color: transparentize(black, 0.3);
 
-$sidebar_bg_color: darken(mix($bg_color, $base_color, 50%), 5%);
+$sidebar_bg_color: darken(mix(if($darker == true, $dark_bg_color, $bg_color), if($darker == true, $dark_base_color, $base_color), 50%), 5%);
+$sidebar_fg_color: if($darker == true, $light_fg_color, $fg_color);
 $base_hover_color: transparentize($fg_color, 0.95);
 
 $shadow_color: transparentize(black, 0.9);
 
 //insensitive state derived colors
-$insensitive_fg_color: mix($fg_color, $bg_color, 50%);
-$insensitive_bg_color: mix($bg_color, $base_color, 60%);
+$insensitive_fg_color: if($variant == "light", $dark_insensitive_fg_color, $light_insensitive_fg_color);
+$insensitive_bg_color: if($variant == "light", $light_insensitive_bg_color, $dark_insensitive_bg_color);
 $insensitive_border_color: $border_color;
 
 //colors for the backdrop state, derived from the main colors.
-$backdrop_base_color: if($variant == "light", darken($base_color, 1%), lighten($base_color, 1%));
-$backdrop_bg_color: $bg_color;
-$backdrop_fg_color: mix($fg_color, $backdrop_bg_color, 50%);
-$backdrop_insensitive_color: if($variant == "light", darken($backdrop_bg_color, 15%), lighten($backdrop_bg_color, 15%));
+$backdrop_base_color: if($variant == "light", $light_backdrop_base_color, $dark_backdrop_base_color);
+$backdrop_bg_color: if($variant == "light", $light_backdrop_bg_color, $dark_backdrop_bg_color);
+$backdrop_fg_color: if($variant == "light", $dark_backdrop_fg_color, $light_backdrop_fg_color);
+$backdrop_insensitive_color: if($variant == "light", $light_backdrop_insensitive_color, $dark_backdrop_insensitive_color);
 $backdrop_selected_fg_color: if($variant == "light", $backdrop_base_color, $backdrop_fg_color);
-$backdrop_border_color: mix($border_color, $bg_color, 80%);
+$backdrop_border_color: if($variant == "light", $light_backdrop_border_color, $dark_backdrop_border_color);
 $backdrop_dark_fill: mix($backdrop_border_color, $backdrop_bg_color, 35%);
-$backdrop_sidebar_bg_color: mix($backdrop_bg_color, $backdrop_base_color, 50%);
+$backdrop_sidebar_bg_color: if($variant == "light", $light_backdrop_sidebar_bg_color, $dark_backdrop_sidebar_bg_color);;
 
 $backdrop_scrollbar_bg_color: darken($backdrop_bg_color, 3%);
 $backdrop_scrollbar_slider_color: mix($backdrop_fg_color, $backdrop_bg_color, 40%);
 
+$backdrop_headerbar_fg_color: if($darker == true, $light_backdrop_fg_color, $backdrop_fg_color);
 $backdrop_menu_color: if($variant == "light", $backdrop_base_color, mix($backdrop_bg_color, $backdrop_base_color, 20%));

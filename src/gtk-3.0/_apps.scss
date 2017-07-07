@@ -1,10 +1,24 @@
 // Tweak Tool
 list.tweak-categories {
   background-image: image($sidebar_bg_color);
+  border-width: 0px;
 
   separator {
     min-height: 0px;
     background: transparent;
+  }
+}
+
+#AutostartListBoxTweakGroup .tweak-startup {
+  padding: 8px 6px;
+  background-image: image($bg_color);
+
+  &:hover {
+    background-image: image($hover);
+  }
+
+  &:active {
+    background-image: image($active);
   }
 }
 
@@ -36,11 +50,12 @@ list.tweak-categories {
 
     &:checked {
       color: darken($progress_color, 10%);
-    }}
-
-    .floating-bar {
-      background: $floating_element_bg_color;
     }
+  }
+
+  .floating-bar {
+    background: transparentize($base_color, 0.15);
+  }
 }
 
 // Builder

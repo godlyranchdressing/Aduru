@@ -22,10 +22,9 @@ $dark_fill: mix($border_color, $bg_color, 50%);
 $hover: transparentize($fg_color, 0.9);
 $active:transparentize($fg_color, 0.85);
 //
-$overview_bg: transparentize($dark_bg_color, 0.5);
-$overview_border_color: transparentize($dark_bg_color, 0.70);
-$dash_bg: transparentize($dark_bg_color, 0.5);
-$dash_border: transparentize($dark_bg_color, 0.70);
+$panel_bg_color: #202020;
+$overview_bg: transparentize($panel_bg_color, 0.5);
+$overview_border_color: transparentize($panel_bg_color, 0.70);
 $inverse_fill: transparentize(if($variant == "light", $light_fg_color, $dark_fg_color), 0.8);
 $inverse_active: transparentize(if($variant == "light", $light_fg_color, $dark_fg_color), 0.9);
 //

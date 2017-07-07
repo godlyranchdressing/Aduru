@@ -1,3 +1,8 @@
+# GTK3
+----------
+- Rhythmbox has a white border underneath its toolbar
+- Darker variant needs cleanup
+
 # GTK2
 ----------
 - GTK2 asset sheets might have a couple Adwaita colors floating around in the smaller elements
@@ -7,6 +12,6 @@
 # Shell
 ----------
 - Update assets
-- Popover menu border color
 - Notification banner has some aliasing problems
+- Scrap transparency
 - See if a hacky solution for suggested and destructive actions can be done

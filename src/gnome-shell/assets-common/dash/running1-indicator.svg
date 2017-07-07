@@ -30,17 +30,17 @@
      borderopacity="1"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="8.9870265"
-     inkscape:cx="8.6414222"
-     inkscape:cy="4.7872252"
+     inkscape:zoom="16.710252"
+     inkscape:cx="6.7872054"
+     inkscape:cy="3.6150135"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
      inkscape:showpageshadow="true"
-     inkscape:window-width="1848"
-     inkscape:window-height="1138"
-     inkscape:window-x="72"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="1366"
      inkscape:window-y="30"
      width="400px"
      height="300px"
@@ -102,7 +102,7 @@
         <dc:source />
         <cc:license
            rdf:resource="" />
-        <dc:title></dc:title>
+        <dc:title />
         <dc:subject>
           <rdf:Bag />
         </dc:subject>
@@ -143,7 +143,7 @@
      id="layer1"
      transform="translate(0,-296)">
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none"
+       style="opacity:1;fill:#30b4e9;fill-opacity:1;stroke:none"
        id="rect4270-9"
        width="8"
        height="2"

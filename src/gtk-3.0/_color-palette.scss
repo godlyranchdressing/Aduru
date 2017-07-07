@@ -27,5 +27,27 @@ $light_bg_color: $porcelain;
 $dark_bg_color: $light_dark;
 $dark_fg_color: $slate;
 $light_fg_color: $porcelain;
+//
+$light_insensitive_fg_color: mix($dark_fg_color, $light_bg_color, 50%);
+$dark_insensitive_fg_color: mix($light_fg_color, $dark_bg_color, 50%);
+$light_insensitive_bg_color: mix($light_bg_color, $light_base_color, 60%);
+$dark_insensitive_bg_color: mix($dark_bg_color, $dark_base_color, 60%);
+//
 $light_border_color: darken($light_bg_color, 20%);
 $dark_border_color: darken($dark_bg_color, 10%);
+$light_alt_border_color: darken($light_bg_color, 35%);
+$dark_alt_border_color: darken($dark_bg_color, 17%);
+$light_backdrop_border_color: mix($light_border_color, $light_bg_color, 80%);
+$dark_backdrop_border_color: mix($dark_border_color, $dark_bg_color, 80%);
+//
+$light_backdrop_base_color: darken($light_base_color, 1%);
+$dark_backdrop_base_color: lighten($dark_base_color, 1%);
+$light_backdrop_bg_color: $light_bg_color;
+$dark_backdrop_bg_color: $dark_bg_color;
+$light_backdrop_sidebar_bg_color: mix($light_backdrop_bg_color, $light_backdrop_base_color, 50%);
+$dark_backdrop_sidebar_bg_color: mix($dark_backdrop_bg_color, $dark_backdrop_base_color, 50%);
+//
+$light_backdrop_fg_color: mix($dark_fg_color, $light_backdrop_bg_color, 50%);
+$dark_backdrop_fg_color: mix($light_fg_color, $dark_backdrop_bg_color, 50%);
+$light_backdrop_insensitive_color: darken($light_backdrop_bg_color, 15%);
+$dark_backdrop_insensitive_color: lighten($dark_backdrop_bg_color, 15%);
