@@ -1,3 +1,10 @@
+// Rhythmbox
+.primary-toolbar {
+  border-image-source: image(if($darker == true, $dark_border_color, $border_color));
+  border-image-width: 1px;
+  border-image-slice: 0 0 1 0;
+}
+
 // Tweak Tool
 list.tweak-categories {
   background-image: image($sidebar_bg_color);

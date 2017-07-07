@@ -42,12 +42,6 @@ $warning_color: $orange;
 $error_color: darken($red, 5%);
 $destructive_color: $red;
 //
-$osd_fg_color: if($variant == "dark", $fg_color, $dark_fg_color);
-$osd_bg_color: transparentize(if($variant == "dark", $base_color, $light_base_color), 0.15);
-$osd_border_color: $border_color;
-$osd_insensitive_bg_color: transparentize(mix($osd_fg_color, opacify($osd_bg_color, 1), 10%), 0.5);
-$osd_insensitive_fg_color: mix($osd_fg_color, opacify($osd_bg_color, 1), 50%);
-//
 $shadow_color: transparentize(black, 0.9);
 
 //insensitive state derived colors

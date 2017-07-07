@@ -1,8 +1,3 @@
-# GTK3
-----------
-- Rhythmbox has a white border underneath its toolbar
-- Darker variant needs cleanup
-
 # GTK2
 ----------
 - GTK2 asset sheets might have a couple Adwaita colors floating around in the smaller elements

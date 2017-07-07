@@ -62,8 +62,13 @@
 
 // buttons
 
-@function _border_color($c) {
-  @return darken($c, 25%);
+@function _border_color($c, $alt: false) {
+  @if $alt == false {
+    @return darken($c, 25%);
+  }
+  @else{
+    @return darken($c, 10%);
+  }
 }
 
 // colored buttons want
@@ -128,7 +133,7 @@
   }
 }
 
-@mixin button($t, $c: $osd_bg_color, $tc: $fg_color, $slice: 2 2 2 2) {
+@mixin button($t, $c: $bg_color, $tc: $fg_color, $slice: 2 2 2 2) {
   // Shell themes seem to operate on a "inherit from Adwaita unless specified otherwise" rule
   // So we're doing a reset to erase any default Adwaita styling
   @include reset;

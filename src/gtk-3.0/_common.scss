@@ -1031,8 +1031,8 @@ button {
 
   &.circular {
     // The Bloody Circul Button
-    border-radius: 9999px;
-    -gtk-outline-radius: 9999px;
+    border-radius: $circular_radius;
+    -gtk-outline-radius: $circular_radius;
 
     @include colored_focus($primary_color);
 
@@ -2115,7 +2115,7 @@ headerbar.titlebar {
     &:backdrop {
       @include button(backdrop, $headerbar_bg_color, $headerbar_fg_color);
 
-      &:disabled, &:not(:checked){
+      &:disabled, &:not(:checked) {
         background: if($darker == true, $dark_insensitive_bg_color, $insensitive_bg_color);
         color: if($darker == true, $dark_backdrop_insensitive_color, $backdrop_insensitive_color);
         border-color: if($darker == true, $dark_backdrop_border_color, $backdrop_border_color);
@@ -2502,7 +2502,6 @@ menubar,
   color: $headerbar_fg_color;
   padding: 0px;
   box-shadow: inset 0 -1px transparentize(black, 0.9);
-
 
   &:backdrop {
     background-color: if($darker == true, $dark_backdrop_bg_color, $backdrop_bg_color);
@@ -3535,6 +3534,7 @@ check {
 
   &:backdrop {
     @include button(backdrop, $base_color);
+
     border: 1px solid $border_color;
   }
 
@@ -3591,6 +3591,7 @@ radio {
 
   &:backdrop {
     @include button(backdrop, $base_color);
+
     border: 1px solid $border_color;
   }
 
@@ -3688,10 +3689,21 @@ treeview.view {
 /************
  * GtkScale *
  ************/
+
+ %bar_vertical {
+   // for the levelbar, scale and progress bar
+   min-width: 5px;
+ }
+
+ %bar_horizontal {
+   // for the levelbar, scale and progress bar
+   min-height: 5px;
+ }
+
 %scale_trough {
-  min-height: 3px;
   border-radius: $standard_radius;
   background-color: $dark_fill;
+  box-shadow: inset 0 0 0 1px $border_color;
 
   &:disabled {
     background-color: darken($insensitive_bg_color, 7.5%);
@@ -3701,10 +3713,6 @@ treeview.view {
     background-color: $backdrop_dark_fill;
     border-color: $backdrop_border_color;
     transition: $backdrop_transition;
-
-    &:disabled {
-      background-color: $insensitive_bg_color;
-    }
   }
 
   row:selected & {
@@ -3727,11 +3735,11 @@ treeview.view {
 }
 
 %scale_highlight_vertical {
-  min-width: 3px;
+
 }
 
 %scale_highlight_horizontal {
-  min-height: 3px;
+
 }
 
 %scale_highlight_vertical, %scale_highlight_horizontal {
@@ -3747,10 +3755,11 @@ treeview.view {
   }
 
   &:backdrop {
-    box-shadow: inest 0 0 0 1px $scale_color;
+    box-shadow: inset 0 0 0 1px $scale_color;
 
     &:disabled {
       background-color: transparent;
+      box-shadow: none;
       border-color: transparent;
     }
   }
@@ -3781,11 +3790,7 @@ scale {
   min-width: 10px;
   padding: 12px;
 
-  fill,
-  highlight {
-    // those are inside the trough node, I need them to show their own border over the trough one, so negative margin
-    margin: -1px;
-  }
+
 
   slider {
     // the slider is inside the trough, so to have make it bigger there's a negative margin
@@ -3837,10 +3842,12 @@ scale {
   // the backing bit
   trough {
     @extend %scale_trough;
-
     outline-offset: 2px;
     -gtk-outline-radius: $standard_radius;
   }
+
+  &.horizontal{trough{    @extend %bar_horizontal;}}
+  &.vertical{trough{    @extend %bar_vertical;}}
 
   // this is another differently styled part of the backing bit, the most relevant use case is for example
   // in media player to indicate how much video stream as been cached
@@ -3875,7 +3882,7 @@ scale {
     @include button(normal, $base_color, $edge: $border_color);
 
     border: 1px solid darken($alt_border_color, 3%);
-    border-radius: $standard_radius;
+    border-radius: $circular_radius;
     transition: $button_transition;
     transition-property: background, border, box-shadow;
 
@@ -3884,7 +3891,7 @@ scale {
     }
 
     &:active {
-      border-color: $primary_color;
+      border-color: $scale_color;
     }
 
     &:disabled {
@@ -4217,13 +4224,7 @@ scale {
  * Progress bars *
  *****************/
 
-%progressbar_vertical {
-  min-width: 3px;
-}
 
-%progressbar_horizontal {
-  min-height: 3px;
-}
 
 %progressbar_vertical, %progressbar_horizontal {
   background-color: $progress_color;
@@ -4238,7 +4239,7 @@ scale {
   }
 
   &:backdrop {
-    box-shadow: 0 0 0 1px $progress_color;
+    box-shadow: inset 0 0 0 1px $progress_color;
 
     &:disabled {
       background-color: transparent;
@@ -4252,14 +4253,14 @@ progressbar {
   &.horizontal {
     trough,
     progress {
-      min-height: 2px;
+          @extend %bar_horizontal;
     }
   }
 
   &.vertical {
     trough,
     progress {
-      min-width: 2px;
+      @extend %bar_vertical;
     }
   }
 
@@ -4361,12 +4362,12 @@ progressbar {
 levelbar {
   block {
     min-width: 32px;
-    min-height: 3px;
+    @extend %bar_horizontal;
   }
 
   &.vertical block {
-    min-width: 3px;
     min-height: 32px;
+    @extend %bar_vertical;
   }
 
   &:backdrop {
@@ -4390,11 +4391,11 @@ levelbar {
   }
 
   block {
-    min-height: 3px;
+    @extend %bar_horizontal;
     border-radius: $standard_radius;
 
     &.low {
-      border-color: $warning_color;
+      box-shadow: inset 0 0 0 1px _border_color($warning_color);
       background-color: $warning_color;
 
       &:backdrop {
@@ -4819,7 +4820,6 @@ filechooserbutton:drop(active) {
  * Sidebar *
  ***********/
 .sidebar, .tweak-categories, .primary-toolbar {
-  border-style: none;
   border-color: if($darker == true, $dark_border_color, $border_color);
   background-color: $sidebar_bg_color;
 
@@ -4897,6 +4897,18 @@ filechooserbutton:drop(active) {
   paned & {
     &.left, &.right, &.left:dir(rtl), &:dir(rtl), &:dir(ltr), & {
       border-style: none;
+    }
+  }
+}
+
+@if $darker == true {
+  treeview.sidebar {
+    &:hover {
+      background-color: transparentize($light_fg_color, 0.95);
+    }
+
+    &:active {
+      background-color: transparentize($light_fg_color, 0.9);
     }
   }
 }
