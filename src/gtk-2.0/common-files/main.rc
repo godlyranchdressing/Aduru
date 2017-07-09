@@ -63,8 +63,8 @@ style "default" {
   GtkScrolledWindow::scrollbar-spacing       = 0
   GtkScrolledWindow::scrollbars-within-bevel = 1
 
-  GtkScale::slider_length       = 26
-  GtkScale::slider_width        = 26
+  GtkScale::slider_length       = 18
+  GtkScale::slider_width        = 18
   GtkScale::trough-side-details = 1
 
   GtkProgressBar::min-horizontal-bar-height = 6
@@ -73,8 +73,8 @@ style "default" {
   # whole progressbar thicker, so by setting it to the exact above value
   # we get the maximum spacing between the text and the edges without
   # doing so.
-  GtkProgressBar::xspacing = 4
-  GtkProgressBar::yspacing = 4
+  GtkProgressBar::xspacing = 5
+  GtkProgressBar::yspacing = 5
 
   GtkStatusbar::shadow_type    = GTK_SHADOW_NONE
   GtkSpinButton::shadow_type   = GTK_SHADOW_NONE
@@ -1057,7 +1057,7 @@ style "default" {
       function    = BOX
       detail      = "trough-upper"
       file        = "assets/scale-horz-trough.png"
-      border      = {10, 10, 0, 0}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
       orientation = HORIZONTAL
     }
@@ -1066,7 +1066,7 @@ style "default" {
       function    = BOX
       detail      = "trough-lower"
       file        = "assets/scale-horz-trough-active.png"
-      border      = {10, 10, 0, 0}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
       orientation = HORIZONTAL
     }
@@ -1075,7 +1075,7 @@ style "default" {
       function    = BOX
       detail      = "trough-upper"
       file        = "assets/scale-vert-trough.png"
-      border      = {0, 0, 10, 10}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
       orientation = VERTICAL
     }
@@ -1084,7 +1084,7 @@ style "default" {
       function    = BOX
       detail      = "trough-lower"
       file        = "assets/scale-vert-trough-active.png"
-      border      = {0, 0, 10, 10}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
       orientation = VERTICAL
     }
@@ -2212,13 +2212,16 @@ style "textview" {
 
 style "scale_horz" {
 
+  xthickness = 0
+  ythickness = 0
+
   engine "pixmap" {
 
     image {
       function    = BOX
       detail      = "trough-upper"
       file        = "assets/scale-horz-trough.png"
-      border      = {10, 10, 0, 0}
+      border      = {2, 2, 1, 1}
       stretch     = TRUE
     }
 
@@ -2226,7 +2229,7 @@ style "scale_horz" {
       function    = BOX
       detail      = "trough-lower"
       file        = "assets/scale-horz-trough-active.png"
-      border      = {10, 10, 0, 0}
+      border      = {2, 2, 1, 1}
       stretch     = TRUE
     }
 
@@ -2236,13 +2239,16 @@ style "scale_horz" {
 
 style "scale_vert" {
 
+  xthickness = 0
+  ythickness = 0
+
   engine "pixmap" {
 
     image {
       function    = BOX
       detail      = "trough-upper"
       file        = "assets/scale-vert-trough.png"
-      border      = {0, 0, 10, 10}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
     }
 
@@ -2250,7 +2256,7 @@ style "scale_vert" {
       function    = BOX
       detail      = "trough-lower"
       file        = "assets/scale-vert-trough-active.png"
-      border      = {0, 0, 10, 10}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
     }
 
@@ -2260,8 +2266,8 @@ style "scale_vert" {
 
 style "progressbar" {
 
-  xthickness = 1
-  ythickness = 1
+  xthickness = 0
+  ythickness = 0
 
   fg[PRELIGHT] = @selected_fg_color
 
@@ -2271,7 +2277,7 @@ style "progressbar" {
       function    = BOX
       detail      = "trough"
       file        = "assets/progressbar-horz-trough.png"
-      border      = {3, 3, 2, 2}
+      border      = {2, 2, 1, 1}
       stretch     = TRUE
       orientation = HORIZONTAL
     }
@@ -2280,7 +2286,7 @@ style "progressbar" {
       function    = BOX
       detail      = "trough"
       file        = "assets/progressbar-vert-trough.png"
-      border      = {2, 2, 3, 3}
+      border      = {1, 1, 2, 2}
       stretch     = TRUE
       orientation = VERTICAL
     }

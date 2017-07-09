@@ -22,5 +22,11 @@ radio-mixed-hover
 radio-mixed-insensitive
 scale-vert-trough-active
 scale-horz-trough-active
+scrollbar-horz-slider-active
+scrollbar-vert-slider-active
+scrollbar-vert-slider-active-rtl
+menu-pan-left-hover
+menu-pan-right-hover
 progressbar-horz
 progressbar-vert
+menubar-item-active

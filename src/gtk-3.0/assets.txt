@@ -62,7 +62,5 @@ window-close
 window-close-dark
 window-maximize
 window-maximize-dark
-window-restore
-window-restore-dark
 window-minimize
 window-minimize-dark

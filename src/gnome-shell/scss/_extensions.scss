@@ -101,11 +101,15 @@
       }
 
       &:hover, &:focus {
-        background-color: $overview_bg;
+        @extend %icon_tile:hover;
+
+        box-shadow: none !important;
       }
 
       &:active, &:checked {
-        background-color: darken($overview_bg, 5%);
+        @extend %icon_tile:active;
+
+        box-shadow: none !important;
       }
     }
   }

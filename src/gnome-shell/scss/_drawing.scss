@@ -44,19 +44,22 @@
 
 // entries
 
-@mixin entry {
-  color: $fg_color;
-  background-color: $base_color;
-  box-shadow: inset 0 0 0 1px $border_color;
+@mixin entry($fg: $fg_color, $bg: $base_color) {
+  color: $fg;
+  background-color: $bg;
+  box-shadow: inset 0 0 0 1px black;
   border-radius: 6px;
+  border-width: 0px;
 
   &:hover, &:focus {
     box-shadow: inset 0 0 0 2px $primary_color;
+    border-width: 0px;
   }
 
   &:insensitive {
     color: if($variant == "light", darken($insensitive_fg_color, 10), $insensitive_fg_color);
     box-shadow: inset 0 0 0 1px $border_color;
+    border-width: 0px;
   }
 }
 
@@ -66,7 +69,7 @@
   @if $alt == false {
     @return darken($c, 25%);
   }
-  @else{
+  @else {
     @return darken($c, 10%);
   }
 }
@@ -133,34 +136,79 @@
   }
 }
 
-@mixin button($t, $c: $bg_color, $tc: $fg_color, $slice: 2 2 2 2) {
-  // Shell themes seem to operate on a "inherit from Adwaita unless specified otherwise" rule
-  // So we're doing a reset to erase any default Adwaita styling
-  @include reset;
-  @include _button_text_shadow($tc, $c);
+@mixin button($t, $c: $bg_color, $tc: $fg_color, $edge: none) {
+  //
+  // Button drawing function
+  //
+  // $t:    button type,
+  // $c:    base button color for colored* types
+  // $tc:   optional text color for colored* types
+  // $edge: set to none to not draw the bottom edge or specify a color to not
+  //        use the default one
+  //
+  // possible $t values:
+  // normal, hover, active, insensitive, insensitive-active,
+  // backdrop, backdrop-active, backdrop-insensitive, backdrop-insensitive-active,
+  // osd, osd-hover, osd-active, osd-insensitive, osd-backdrop, undecorated
+  //
 
-  border-image: url("assets/buttons/#{$t}/normal.svg") $slice;
+  $_hilight_color: _button_hilight_color($c);
+  $_button_edge: if($edge == none, none, _widget_edge($edge));
+  $_blank_edge: if($edge == none, none, _widget_edge(transparentize($edge, 1)));
+  border-top: 1px solid if($c != $bg_color, _border_color($c), $border_color);
 
-  @each $s in "hover", "active", "insensitive" {
-    // loop through each state and load the button asset
-    @if $s == "hover" {
-      &:hover, &:focus {
-        border-image: url("assets/buttons/#{$t}/#{$s}.svg") $slice;
-      }
-    }
-    @else if $t == app-view and $s == "active" or $t == app-view-last-child and $s == "active" {
-      &:active, &:checked {
-        border-image: url("assets/buttons/#{$t}/#{$s}.svg") $slice;
-      }
+  @if $t == normal {
+    color: $tc;
+    border-color: if($c != $bg_color, _border_color($c), $border_color);
+    border-bottom-color: if($c != $bg_color, _border_color($c), $alt_border_color);
+    background-color: $c;
+
+    @include _button_text_shadow($tc, $c);
+
+    @include _shadows(inset 0 1px $_hilight_color, $_button_edge);
+  }
+  @else if $t == hover {
+    color: $tc;
+    border-color: if($c != $bg_color, _border_color($c), $border_color);
+    border-bottom-color: if($c != $bg_color, _border_color($c), $alt_border_color);
+    background-color: lighten($c, 5%);
+
+    @if $variant == "light" {
+      @include _button_text_shadow($tc, lighten($c, 5%));
+
+      @include _shadows(inset 0 1px _button_hilight_color(lighten($c, 5%)), $_button_edge);
     }
     @else {
-      &:#{$s} {
-        border-image: url("assets/buttons/#{$t}/#{$s}.svg") $slice;
-      }
+      @include _button_text_shadow($tc, lighten($c, 5%));
+
+      @include _shadows(inset 0 1px _button_hilight_color(darken($c, 2%)), $_button_edge);
     }
   }
+  @else if $t == active {
+    color: $tc;
+    border-color: if($c != $bg_color, _border_color($c), $border_color);
+    background-color: darken($c, 6%);
 
-  @if $t == insensitive {
+    @include _shadows(inset 0 1px transparentize($_hilight_color, 1), $_button_edge);
+
+    text-shadow: none;
+  }
+  @else if $t == insensitive {
+    border-color: $border_color;
     color: $insensitive_fg_color;
+    background-color: $insensitive_bg_color;
+    box-shadow: none;
+    text-shadow: none;
+    icon-shadow: none;
+  }
+  @else if $t == undecorated {
+    border-color: transparent;
+    background-color: transparent;
+    background-image: none;
+
+    @include _shadows(inset 0 1px transparentize(white, 1), $_blank_edge);
+
+    text-shadow: none;
+    icon-shadow: none;
   }
 }

@@ -4,6 +4,7 @@ An Adwaita derivative that's a mishmash of some of Adwaita's older design cues a
 ## Preview
 ![Image One](preview-1.png)
 ![Image Two](preview-2.png)
+![Image Three](preview-3.png)
 
 ## Original projects
 - https://git.gnome.org/browse/gtk+/tree/gtk/theme/Adwaita/

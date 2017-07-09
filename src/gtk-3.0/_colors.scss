@@ -6,7 +6,7 @@ $bg_color: if($variant == "light", $light_bg_color, $dark_bg_color);
 $fg_color: if($variant == "light", $dark_fg_color, $light_fg_color);
 //
 $selected_fg_color: #ffffff;
-$primary_color: $blue;
+$primary_color: $adwaita_blue;
 $accent_color: $green;
 $headerbar_fg_color: if($darker == true, $light_fg_color, $fg_color);
 $headerbar_bg_color: if($darker == true, $dark_bg_color, $bg_color);
@@ -18,7 +18,7 @@ $border_edge: if($variant == "light", transparentize(white, 0.2), transparentize
 $link_color: $green;
 $link_visited_color: darken($link_color, 20%);
 $top_hilight: $border_edge;
-$dark_fill: mix($border_color, $bg_color, 50%);
+$dark_fill: if($variant == "light", $light_dark_fill, $dark_dark_fill);
 $menu_color: if($variant == "light", $base_color, mix($bg_color, $base_color, 20%));
 $hover: if(variant == light, transparentize($fg_color, 0.9), transparentize($fg_color, 0.95));
 $active: if(variant == light, transparentize($fg_color, 0.85), transparentize($fg_color, 0.90));

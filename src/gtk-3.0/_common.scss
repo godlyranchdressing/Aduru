@@ -2009,13 +2009,6 @@ headerbar {
     margin-bottom: 5px;
   }
 
-  switch {
-    margin-top: 9px;
-    margin-bottom: 9px;
-  }
-}
-
-headerbar.titlebar {
   @if $darker == true {
     .tweak-titlebar-left, .tweak-titlebar-right {
       border-color: $dark_border_color;
@@ -2119,6 +2112,67 @@ headerbar.titlebar {
         background: if($darker == true, $dark_insensitive_bg_color, $insensitive_bg_color);
         color: if($darker == true, $dark_backdrop_insensitive_color, $backdrop_insensitive_color);
         border-color: if($darker == true, $dark_backdrop_border_color, $backdrop_border_color);
+      }
+    }
+  }
+
+  switch {
+    margin-top: 9px;
+    margin-bottom: 9px;
+
+    @if $darker == true {
+      box-shadow: inset 0 0 0 1px $dark_border_color;
+      background-color: $dark_dark_fill;
+
+      &:disabled {
+        box-shadow: inset 0 0 0 1px $dark_border_color;
+      }
+
+      &:backdrop {
+        box-shadow: inset 0 0 0 1px $dark_backdrop_border_color;
+        background-color: $backdrop_dark_fill;
+
+        &:disabled {
+          @include button(backdrop-insensitive, $tc: transparent);
+
+          box-shadow: inset 0 0 0 1px $dark_backdrop_border_color;
+        }
+      }
+
+      slider {
+        @include button(normal, lighten($dark_base_color, 5%));
+
+        box-shadow: inset 0 0 0 1px $dark_border_color;
+      }
+
+      &:hover slider {
+        @include button(hover, $dark_base_color, $edge: $border_color);
+
+        box-shadow: inset 0 0 0 1px $dark_border_color;
+      }
+
+      &:active slider {
+        @include button(active, $dark_base_color);
+      }
+
+      &:disabled slider {
+        @include button(insensitive, $dark_base_color);
+
+        box-shadow: inset 0 0 0 1px $dark_border_color;
+      }
+
+      &:backdrop {
+        slider {
+          @include button(backdrop, $dark_base_color);
+
+          box-shadow: inset 0 0 0 1px $dark_backdrop_border_color;
+        }
+
+        &:disabled slider {
+          @include button(backdrop-insensitive, $dark_base_color);
+
+          box-shadow: inset 0 0 0 1px $dark_border_color;
+        }
       }
     }
   }
@@ -3293,7 +3347,7 @@ switch {
     border-radius: $standard_radius;
     transition: $button_transition;
 
-    @include button(normal, $base_color);
+    @include button(normal, if($variant == "dark", lighten($base_color, 5%), $base_color));
 
     box-shadow: inset 0 0 0 1px $border_color;
   }
@@ -3648,35 +3702,54 @@ check {
   }
 }
 
-menu menuitem {
-  radio,
-  check {
-    &:checked:not(:backdrop), &:indeterminate:not(:backdrop) {
+menu menuitem, treeview.view {
+  check, radio {
+    &, &:checked:not(:backdrop), &:indeterminate:not(:backdrop) {
       transition: none;
     }
-  }
-}
 
-treeview.view check,
-treeview.view radio {
-  &:selected {
-    background-image: none;
-    background-color: transparent;
-    border-color: white;
-    box-shadow: none;
-    color: white;
+    &, &:checked, &:indeterminate {
+      &, &:hover, &:disabled {
+        // reset
+        background-image: none;
+        background-color: transparent;
+        box-shadow: none;
+        transition: none;
+      }
+    }
 
-    &:disabled {
-      color: $insensitive_fg_color;
+    & {
+      &, &:checked, &:indeterminate {
+        color: $fg_color;
+        border-color: $fg_color;
 
-      &:backdrop {
-        color: $backdrop_insensitive_color;
+        &:disabled {
+          color: $insensitive_fg_color;
+          border-color: $insensitive_fg_color;
+        }
+
+        &:backdrop {
+          color: $backdrop_fg_color;
+          border-color: $backdrop_fg_color;
+
+          &:disabled {
+            color: $backdrop_insensitive_color;
+            border-color: $backdrop_insensitive_color;
+          }
+        }
+      }
+    }
+
+    &, &:checked, &:indeterminate {
+      &:hover, &:selected {
+        color: $selected_fg_color;
+        border-color: $selected_fg_color;
       }
     }
   }
 }
 
-treeview.view {
+menu menuitem, treeview.view {
   radio:selected {
     border-radius: 100%;
   }
@@ -3690,15 +3763,15 @@ treeview.view {
  * GtkScale *
  ************/
 
- %bar_vertical {
-   // for the levelbar, scale and progress bar
-   min-width: 5px;
- }
+%bar_vertical {
+  // for the levelbar, scale and progress bar
+  min-width: 5px;
+}
 
- %bar_horizontal {
-   // for the levelbar, scale and progress bar
-   min-height: 5px;
- }
+%bar_horizontal {
+  // for the levelbar, scale and progress bar
+  min-height: 5px;
+}
 
 %scale_trough {
   border-radius: $standard_radius;
@@ -3734,13 +3807,9 @@ treeview.view {
   }
 }
 
-%scale_highlight_vertical {
+%scale_highlight_vertical {}
 
-}
-
-%scale_highlight_horizontal {
-
-}
+%scale_highlight_horizontal {}
 
 %scale_highlight_vertical, %scale_highlight_horizontal {
   background-color: $scale_color;
@@ -3789,8 +3858,6 @@ scale {
   min-height: 10px;
   min-width: 10px;
   padding: 12px;
-
-
 
   slider {
     // the slider is inside the trough, so to have make it bigger there's a negative margin
@@ -3842,12 +3909,22 @@ scale {
   // the backing bit
   trough {
     @extend %scale_trough;
+
     outline-offset: 2px;
     -gtk-outline-radius: $standard_radius;
   }
 
-  &.horizontal{trough{    @extend %bar_horizontal;}}
-  &.vertical{trough{    @extend %bar_vertical;}}
+  &.horizontal {
+    trough {
+      @extend %bar_horizontal;
+    }
+  }
+
+  &.vertical {
+    trough {
+      @extend %bar_vertical;
+    }
+  }
 
   // this is another differently styled part of the backing bit, the most relevant use case is for example
   // in media player to indicate how much video stream as been cached
@@ -4224,8 +4301,6 @@ scale {
  * Progress bars *
  *****************/
 
-
-
 %progressbar_vertical, %progressbar_horizontal {
   background-color: $progress_color;
   box-shadow: inset 0 0 0 1px _border_color($progress_color);
@@ -4253,7 +4328,7 @@ progressbar {
   &.horizontal {
     trough,
     progress {
-          @extend %bar_horizontal;
+      @extend %bar_horizontal;
     }
   }
 
@@ -4362,11 +4437,13 @@ progressbar {
 levelbar {
   block {
     min-width: 32px;
+
     @extend %bar_horizontal;
   }
 
   &.vertical block {
     min-height: 32px;
+
     @extend %bar_vertical;
   }
 
@@ -4392,6 +4469,7 @@ levelbar {
 
   block {
     @extend %bar_horizontal;
+
     border-radius: $standard_radius;
 
     &.low {
@@ -4592,10 +4670,24 @@ list {
   row {
     padding: 2px;
   }
+
+  button.image-button {
+    @include button(undecorated);
+
+    @include colored_focus;
+  }
 }
 
 row {
   transition: all 150ms $ease-out-quad;
+
+  &:selected {
+    box-shadow: inset 0 1px _border_color($primary_color), inset 0 -1px _border_color($primary_color);
+
+    &:backdrop {
+      box-shadow: none;
+    }
+  }
 
   &:hover {
     transition: none;
@@ -4823,6 +4915,18 @@ filechooserbutton:drop(active) {
   border-color: if($darker == true, $dark_border_color, $border_color);
   background-color: $sidebar_bg_color;
 
+  @if $darker == true {
+    row {
+      &:hover {
+        background: transparentize($light_fg_color, 0.95);
+      }
+
+      &:active {
+        background: transparentize($light_fg_color, 0.9);
+      }
+    }
+  }
+
   button:not(.flat):not(.sidebar-button) {
     @include button(normal, $headerbar_bg_color, $headerbar_fg_color);
 
@@ -4854,18 +4958,6 @@ filechooserbutton:drop(active) {
 
     &:disabled {
       color: if($darker == true, $light_insensitive_fg_color, $dark_insensitive_fg_color);
-    }
-  }
-
-  @if $darker == true {
-    row {
-      &:hover {
-        background: transparentize($light_fg_color, 0.95);
-      }
-
-      &:active {
-        background: transparentize($light_fg_color, 0.9);
-      }
     }
   }
 
@@ -4902,13 +4994,13 @@ filechooserbutton:drop(active) {
 }
 
 @if $darker == true {
-  treeview.sidebar {
+  treeview.sidebar.view {
     &:hover {
-      background-color: transparentize($light_fg_color, 0.95);
+      background-image: image(transparentize($light_fg_color, 0.95));
     }
 
     &:active {
-      background-color: transparentize($light_fg_color, 0.9);
+      background-image: image(transparentize($light_fg_color, 0.9));
     }
   }
 }
@@ -5571,12 +5663,10 @@ decoration {
 
 // Window Close button
 button.titlebutton {
-  @extend %button_basic;
-
-  @extend %button_basic.flat;
-
   @include _button_fg_shadow;
 
+  border-radius: $circular_radius;
+  min-height: 0;
   min-width: 8px;
   padding: 4px;
 
@@ -5597,12 +5687,12 @@ button.titlebutton {
   /*titlebutton*/
   @each $s, $as in ("close", $red), ("maximize", $green), ("minimize", $yellow) {
     &.#{$s} {
-      &:hover image {
-        color: $as;
+      &:hover {
+        color: lighten($as, 5%);
       }
 
-      &:active image {
-        color: darken($as, 5%);
+      &:active {
+        color: darken($as, 2.5%);
       }
     }
   }
@@ -5625,6 +5715,10 @@ headerbar.selection-mode button.titlebutton,
   @at-root %nobg_selected_items, & {
     color: $selected_fg_color;
 
+    * {
+      color: $selected_fg_color;
+    }
+
     &:hover {
       background-color: darken($primary_color, 5%);
     }
@@ -5635,6 +5729,7 @@ headerbar.selection-mode button.titlebutton,
 
     &:backdrop {
       color: $backdrop_selected_fg_color;
+      box-shadow: none;
 
       &:disabled {
         color: mix($backdrop_selected_fg_color, $primary_color, 30%);

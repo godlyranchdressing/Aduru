@@ -35,6 +35,8 @@ $dark_insensitive_bg_color: mix($dark_bg_color, $dark_base_color, 60%);
 //
 $light_border_color: darken($light_bg_color, 20%);
 $dark_border_color: darken($dark_bg_color, 10%);
+$light_dark_fill: mix($light_border_color, $light_bg_color, 50%);
+$dark_dark_fill: mix($dark_border_color, $dark_bg_color, 50%);
 $light_alt_border_color: darken($light_bg_color, 35%);
 $dark_alt_border_color: darken($dark_bg_color, 17%);
 $light_backdrop_border_color: mix($light_border_color, $light_bg_color, 80%);

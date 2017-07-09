@@ -3,6 +3,51 @@
   border-image-source: image(if($darker == true, $dark_border_color, $border_color));
   border-image-width: 1px;
   border-image-slice: 0 0 1 0;
+
+  @if $darker == true {
+    button {
+      @if $darker == true {
+        @each $a_type, $b_type in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":backdrop", "backdrop") {
+          &.flat &#{$a_type}, &#{$a_type} {
+            @include button($b_type, $dark_base_color, $light_fg_color);
+          }
+        }
+      }
+    }
+
+    scale trough {
+      background-color: $dark_dark_fill;
+      box-shadow: inset 0 0 0 1px $dark_border_color;
+    }
+
+    scale slider {
+      border: 1px solid darken($dark_alt_border_color, 3%);
+
+      @include button(normal, $dark_base_color, $edge: $shadow_color);
+
+      &:hover {
+        @include button(hover, $dark_base_color, $edge: $dark_border_color);
+      }
+
+      &:active {
+        @include button(active, $dark_base_color);
+      }
+
+      &:disabled {
+        @include button(insensitive, $dark_base_color);
+      }
+
+      &:backdrop {
+        @include button(backdrop, $dark_base_color);
+
+        transition: $backdrop_transition;
+
+        &:disabled {
+          @include button(backdrop-insensitive, $dark_base_color);
+        }
+      }
+    }
+  }
 }
 
 // Tweak Tool
@@ -124,5 +169,18 @@ window.workbench {
 }
 
 headerbar button.toolbar-primary-buttons-software {
-  @include button(normal);
+  @if $darker == true {
+    @each $a_type, $b_type in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":backdrop", "backdrop") {
+      &#{$a_type} {
+        @include button($b_type, $dark_base_color, $light_fg_color);
+      }
+    }
+  }
+  @else {
+    @each $a_type, $b_type in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":backdrop", "backdrop") {
+      &#{$a_type} {
+        @include button($b_type);
+      }
+    }
+  }
 }
