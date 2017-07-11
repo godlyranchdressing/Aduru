@@ -1,3 +1,3 @@
 # Shell
-----------
-- Finetuning
+--------
+- App-drawer box-shadow border needs to go

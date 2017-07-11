@@ -3702,7 +3702,7 @@ check {
   }
 }
 
-menu menuitem, treeview.view {
+menu menuitem {
   check, radio {
     &, &:checked:not(:backdrop), &:indeterminate:not(:backdrop) {
       transition: none;

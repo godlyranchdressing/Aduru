@@ -139,25 +139,30 @@
   @each $g in left right top bottom {
     // variables still have to be declared before being assigned
     $border_width: null;
+    $border_radius: null;
 
     @if $g == "left" {
       // if the dock is pinned to the left ☜(ﾟ∀ﾟ☜)
       $border_width: 1px 1px 1px 0;
+      $border_radius: 0 $standard_radius 0 0;
     }
 
     @if $g == "right" {
       // to the right (☞ﾟ∀ﾟ)☞
       $border_width: 1px 0 1px 1px;
+      $border_radius: $standard_radius 0 0 0;
     }
 
     @if $g == "bottom" {
       // now down ☟(˚▽˚)☟
       $border_width: 1px 1px 0 1px;
+      $border_radius: $standard_radius 0 0 0;
     }
 
     @if $g == "top" {
       // and up ☝(˚▽˚)☝
       $border_width: 0px 1px 1px 1px;
+      $border_radius: 0 0 0 $standard_radius;
     }
 
     #dashtodockContainer.#{$g} {
@@ -165,6 +170,10 @@
         // the dash's appearance
         border: 1px solid $overview_border_color;
         border-width: $border_width;
+
+        .show-apps {
+          border-radius: $border_radius;
+        }
       }
     }
   }

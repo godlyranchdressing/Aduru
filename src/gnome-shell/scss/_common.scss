@@ -1340,9 +1340,11 @@ StScrollBar {
 }
 
 .message {
-  border-radius: $standard_radius;
-  box-shadow: inset 0 0 0 1px $border_color;
-  background-color: $base_color;
+  border-radius: 0 $standard_radius $standard_radius 0;
+  border: 1px solid $border_color;
+  border-bottom-width: 0px !important;
+  box-shadow: inset 0 -1px $border_color;
+  background-color: mix($bg_color, $base_color, 50%);
 
   &:focus,
   &:hover {
@@ -1351,15 +1353,18 @@ StScrollBar {
 }
 
 .message-icon-bin {
-  padding: 10px 3px 10px 10px;
-
+  background-color: $primary_color;
+  box-shadow: inset 2px 0 darken($primary_color, 10%);
+  min-width: 62px;
+  padding: 20px 0 16px 0;
+  
   &:rtl {
-    padding: 10px 10px 10px 3px;
+    padding: 20px 0 16px 0;
   }
 }
 
 .message-icon-bin > StIcon {
-  color: $fg_color;
+  color: $light_fg_color;
   icon-size: 16px;
   -st-icon-style: symbolic;
 }
@@ -1378,7 +1383,7 @@ StScrollBar {
 }
 
 .message-secondary-bin > StIcon {
-  icon-size: 16px;
+  icon-size: 32px;
 }
 
 .message-title {
@@ -1413,15 +1418,15 @@ StScrollBar {
 }
 
 .media-message-cover-icon {
-  icon-size: 48px !important;
+  icon-size: 32px !important;
 
   &.fallback {
-    color: if($variant == "light", $fg_color, lighten($bg_color, 10%));
-    background-color: $bg_color;
+    color: $light_fg_color;
+    background-color: transparent;
     border: 2px solid transparent;
     border-radius: 2px;
     icon-size: 16px;
-    padding: 8px;
+    padding: 0px;
   }
 }
 
@@ -1854,6 +1859,10 @@ StScrollBar {
   }
 
   &:checked, &:active {
+    .overview-icon, .app-well-app {
+      box-shadow: none !important;
+    }
+
     .overview-icon:last-child :first-child {
       color: darken($primary_color, 5%);
     }
@@ -2016,11 +2025,12 @@ StScrollBar {
   font-size: 11pt;
   width: 34em;
   margin: 0;
-  border-radius: 0 0 $standard_radius $standard_radius;
+  border-radius: 0 $standard_radius $standard_radius 0;
   border: 1px solid $border_color;
-  border-top-style: none;
-  box-shadow: inset 0 0 transparent;
-  background-color: transparentize($base_color, 0.15);
+  border-left-width: 0px !important;
+  border-top-width: 0px !important;
+  box-shadow: -2px 0 darken($primary_color, 10%);
+  background-color: $base_color;
 
   &:hover, &:active {
     background-color: $base_color;
@@ -2041,8 +2051,8 @@ StScrollBar {
 
   .notification-actions {
     background-color: $base_color;
-    padding-top: 2px;
-    border-width: 0 1px 1px 1px;
+    padding-top: 0px;
+    border-radius: 0 0 $standard_radius $standard_radius;
   }
 
   .notification-button {
@@ -2067,12 +2077,18 @@ StScrollBar {
     border-left-style: none;
     border-bottom-style: none;
 
+    &:first-child:last-child {
+      border-radius: 0 0 $standard_radius $standard_radius;
+    }
+
     &:first-child {
       border-right-style: solid;
+      border-radius: 0 0 0 $standard_radius;
     }
 
     &:last-child {
       border-left-style: solid;
+      border-radius: 0 0 $standard_radius 0;
     }
   }
 }
