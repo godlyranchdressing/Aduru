@@ -1357,7 +1357,7 @@ StScrollBar {
   box-shadow: inset 2px 0 darken($primary_color, 10%);
   min-width: 62px;
   padding: 20px 0 16px 0;
-  
+
   &:rtl {
     padding: 20px 0 16px 0;
   }
@@ -1766,9 +1766,9 @@ StScrollBar {
   //osd tooltip
   border-radius: 7px;
   padding: 4px 12px;
-  color: $fg_color;
-  background-color: $base_color;
-  border: 1px solid $border_color;
+  color: $light_fg_color;
+  background-color: $dark_base_color;
+  border: 1px solid $dark_border_color;
   text-align: center;
   -x-offset: 8px;
 }
@@ -2025,8 +2025,9 @@ StScrollBar {
   font-size: 11pt;
   width: 34em;
   margin: 0;
-  border-radius: 0 $standard_radius $standard_radius 0;
-  border: 1px solid $border_color;
+  border-radius: 0 0 $standard_radius 0;
+  border-right: 1px solid $border_color;
+  border-bottom: 1px solid $border_color !important;
   border-left-width: 0px !important;
   border-top-width: 0px !important;
   box-shadow: -2px 0 darken($primary_color, 10%);
