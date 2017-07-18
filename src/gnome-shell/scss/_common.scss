@@ -39,6 +39,7 @@ stage {
 /* Buttons */
 .button {
   border-width: 1px;
+  border-radius: $standard_radius;
   padding: 4px 32px;
 
   @include button(normal);
@@ -1737,13 +1738,14 @@ StScrollBar {
 #dash {
   font-size: 9pt;
   color: $fg_color;
-  background-color: $panel_bg_color;
-  border: 1px solid black;
+  border-image: url("assets/dash/dash-left.svg") 8 8 8 8;
+  background-color: transparent;
   border-left: 0;
-  border-radius: 0 9px 9px 0;
+  border-radius: 0;
 
   &:rtl {
-    border-radius: 9px 0 0 9px;
+    border-image: url("assets/dash/dash-right.svg") 8 8 8 8;
+    border-radius: 0;
   }
 
   .placeholder {
@@ -2058,7 +2060,7 @@ StScrollBar {
 
   .notification-button {
     padding: 4px 4px 5px;
-    spacing: 1px;
+    spacing: 0px;
 
     @include button(normal);
 
@@ -2074,21 +2076,20 @@ StScrollBar {
       @include button(insensitive);
     }
 
-    border-right-style: none;
-    border-left-style: none;
-    border-bottom-style: none;
 
     &:first-child:last-child {
       border-radius: 0 0 $standard_radius $standard_radius;
+      border-right-style: none;
+      border-left-style: none;
     }
 
     &:first-child {
-      border-right-style: solid;
       border-radius: 0 0 0 $standard_radius;
+      border-right: 1px solid $border_color;
     }
 
     &:last-child {
-      border-left-style: solid;
+      border-left: 1px solid $border_color;
       border-radius: 0 0 $standard_radius 0;
     }
   }

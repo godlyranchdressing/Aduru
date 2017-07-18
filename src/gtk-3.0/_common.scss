@@ -5728,9 +5728,10 @@ headerbar.selection-mode button.titlebutton,
     }
 
     &:backdrop {
+      &, label, image{
       color: $backdrop_selected_fg_color;
       box-shadow: none;
-
+      }
       &:disabled {
         color: mix($backdrop_selected_fg_color, $primary_color, 30%);
       }
