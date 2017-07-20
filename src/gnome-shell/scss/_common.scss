@@ -244,7 +244,7 @@ StScrollBar {
   color: $fg_color;
 
   .modal-dialog-content-box {
-    padding: 24px;
+    padding: 20px;
   }
 
   .run-dialog-entry {
@@ -253,6 +253,7 @@ StScrollBar {
   }
 
   .run-dialog-error-box {
+    color: $error_color;
     padding-top: 16px;
     spacing: 6px;
   }
@@ -316,7 +317,8 @@ StScrollBar {
 }
 
 .end-session-dialog-logout-icon {
-  //border: 2px solid #8b8b8b;
+  //border: 2px solid #8b8b8b 
+  color: $fg_color;
   border-radius: 5px;
   width: 48px;
   height: 48px;
@@ -1316,11 +1318,11 @@ StScrollBar {
   @include button(normal);
 
   &:hover, &:focus {
-    @include button(hover);
+    @include button(hover, $primary_color, white);
   }
 
   &:active {
-    @include button(active);
+    @include button(active, $primary_color, white);
   }
 
   &:insensitive {
@@ -2424,7 +2426,7 @@ $legacy_icon_size: 24px;
 
     border-top-width: 1px;
 
-    &:hover, &:focus {
+    &:hover, &:focus, &.default {
       @include button(hover);
     }
 

@@ -302,9 +302,12 @@ spinner {
 %entry,
 entry {
   %entry_basic, & {
-    min-height: 32px;
-    padding-left: 8px;
-    padding-right: 8px;
+    @at-root %standard_dimensions, & {
+      min-height: $button_height;
+      min-width: $button_width;
+      padding: $button_v_padding $button_h_padding;
+    }
+
     border: 1px solid;
     border-radius: $standard_radius;
     transition: all 200ms $ease-out-quad;
@@ -602,9 +605,7 @@ $_dot_color: if($variant == "light", $primary_color, lighten($primary_color, 15%
 %button,
 button {
   @at-root %button_basic, & {
-    min-height: 24px;
-    min-width: 16px;
-    padding: 4px 8px;
+    @extend %standard_dimensions;
     border: 1px solid;
     border-radius: $standard_radius;
     transition: $button_transition;
@@ -1234,7 +1235,7 @@ toolbar.inline-toolbar toolbutton:backdrop {
 modelbutton.flat,
 .menuitem.button.flat {
   transition: $button_transition;
-  min-height: 28px;
+  min-height: $button_height;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 0px;
@@ -1795,7 +1796,7 @@ searchbar,
 headerbar {
   color: $headerbar_fg_color;
   padding: 0 6px;
-  min-height: 40px;
+  min-height: 38px;
   border-width: 0 0 1px;
   border-style: solid;
   border-color: if($variant == "light" and $darker == false, $border_color, $dark_alt_border_color);
@@ -1974,12 +1975,12 @@ headerbar {
   // squared corners when the window is maximized or tiled
 
   &.default-decoration {
-    min-height: 28px;
+    min-height: 26px;
     padding: 4px;
 
     button.titlebutton {
-      min-height: 26px;
-      min-width: 26px;
+      min-height: 24px;
+      min-width: 24px;
       margin: 0;
       padding: 0;
     }
@@ -2565,7 +2566,7 @@ menubar,
   > menuitem {
     transition: $button_transition;
     min-height: 16px;
-    padding: 4px 8px;
+    padding: $button_v_padding $button_h_padding;
 
     &:hover {
       //Seems like it :hover even with keyboard focus
@@ -2992,7 +2993,7 @@ notebook {
 
     tab {
       @at-root &, %tab {
-        min-height: 30px;
+        min-height: $button_height + 2;
         min-width: 30px;
         padding: 4px 12px;
         outline-offset: -5px;
@@ -3542,11 +3543,12 @@ radio {
 
     &, &:hover, &:disabled {
       //FIXME use button reset mixin
-      min-height: 14px;
-      min-width: 14px;
+      min-height: 12px;
+      min-width: 12px;
       background-image: none;
       background-color: transparent;
-      box-shadow: none;
+      border-width: 0px;
+      box-shadow: 0 0 0 1px $border_color;
       -gtk-icon-shadow: none;
       color: inherit;
       border-color: currentColor;
@@ -5036,7 +5038,7 @@ stacksidebar {
   }
 
   row {
-    padding: 10px 4px;
+    padding: 8px 4px;
 
     > label {
       padding-left: 6px;
@@ -5728,10 +5730,11 @@ headerbar.selection-mode button.titlebutton,
     }
 
     &:backdrop {
-      &, label, image{
-      color: $backdrop_selected_fg_color;
-      box-shadow: none;
+      &, label, image {
+        color: $backdrop_selected_fg_color;
+        box-shadow: none;
       }
+
       &:disabled {
         color: mix($backdrop_selected_fg_color, $primary_color, 30%);
       }

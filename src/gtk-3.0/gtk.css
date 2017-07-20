@@ -236,9 +236,6 @@ spinner:checked:disabled {
  ****************/
 spinbutton:not(.vertical),
 entry {
-  min-height: 32px;
-  padding-left: 8px;
-  padding-right: 8px;
   border: 1px solid;
   border-radius: 6px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -246,6 +243,25 @@ entry {
   border-color: #c4c4c4;
   background-color: #fff;
   box-shadow: inset 0 0 0 1px rgba(74, 144, 217, 0);
+}
+
+spinbutton:not(.vertical), spinbutton:not(.vertical) notebook > header > tabs > arrow, spinbutton:not(.vertical)
+.app-notification.frame button,
+.app-notification.frame spinbutton:not(.vertical) button, spinbutton:not(.vertical)
+button,
+entry,
+entry notebook > header > tabs > arrow,
+entry .app-notification button, .app-notification
+entry button,
+entry
+.app-notification.frame button,
+.app-notification.frame
+entry button,
+entry
+button {
+  min-height: 24px;
+  min-width: 16px;
+  padding: 2px 6px;
 }
 
 spinbutton:not(.vertical) image.left,
@@ -614,9 +630,6 @@ treeview entry.flat:focus, treeview entry:focus {
 notebook > header > tabs > arrow, .app-notification button,
 .app-notification.frame button,
 button {
-  min-height: 24px;
-  min-width: 16px;
-  padding: 4px 8px;
   border: 1px solid;
   border-radius: 6px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -5225,23 +5238,38 @@ check:indeterminate:not(:backdrop) {
   transition: 400ms;
 }
 
-menu menuitem check, menu menuitem radio, treeview.view check, treeview.view radio {
+menu menuitem check, menu menuitem check:checked:not(:backdrop), menu menuitem check:indeterminate:not(:backdrop), menu menuitem radio, menu menuitem radio:checked:not(:backdrop), menu menuitem radio:indeterminate:not(:backdrop) {
   transition: none;
 }
 
-menu menuitem check, menu menuitem check:hover, menu menuitem check:checked, menu menuitem check:checked:hover, menu menuitem check:indeterminate, menu menuitem check:indeterminate:hover, menu menuitem radio, menu menuitem radio:hover, menu menuitem radio:checked, menu menuitem radio:checked:hover, menu menuitem radio:indeterminate, menu menuitem radio:indeterminate:hover, treeview.view check, treeview.view check:hover, treeview.view check:checked, treeview.view check:checked:hover, treeview.view check:indeterminate, treeview.view check:indeterminate:hover, treeview.view radio, treeview.view radio:hover, treeview.view radio:checked, treeview.view radio:checked:hover, treeview.view radio:indeterminate, treeview.view radio:indeterminate:hover {
+menu menuitem check, menu menuitem check:hover, menu menuitem check:disabled, menu menuitem check:checked, menu menuitem check:checked:hover, menu menuitem check:checked:disabled, menu menuitem check:indeterminate, menu menuitem check:indeterminate:hover, menu menuitem check:indeterminate:disabled, menu menuitem radio, menu menuitem radio:hover, menu menuitem radio:disabled, menu menuitem radio:checked, menu menuitem radio:checked:hover, menu menuitem radio:checked:disabled, menu menuitem radio:indeterminate, menu menuitem radio:indeterminate:hover, menu menuitem radio:indeterminate:disabled {
   background-image: none;
   background-color: transparent;
   box-shadow: none;
   transition: none;
 }
 
-menu menuitem check, menu menuitem check:checked, menu menuitem check:indeterminate, menu menuitem radio, menu menuitem radio:checked, menu menuitem radio:indeterminate, treeview.view check, treeview.view check:checked, treeview.view check:indeterminate, treeview.view radio, treeview.view radio:checked, treeview.view radio:indeterminate {
+menu menuitem check, menu menuitem check:checked, menu menuitem check:indeterminate, menu menuitem radio, menu menuitem radio:checked, menu menuitem radio:indeterminate {
   color: #5e5e5e;
   border-color: #5e5e5e;
 }
 
-menu menuitem check:selected, menu menuitem check:selected:hover, menu menuitem check:checked:selected, menu menuitem check:checked:selected:hover, menu menuitem check:indeterminate:selected, menu menuitem check:indeterminate:selected:hover, menu menuitem radio:selected, menu menuitem radio:selected:hover, menu menuitem radio:checked:selected, menu menuitem radio:checked:selected:hover, menu menuitem radio:indeterminate:selected, menu menuitem radio:indeterminate:selected:hover, treeview.view check:selected, treeview.view check:selected:hover, treeview.view check:checked:selected, treeview.view check:checked:selected:hover, treeview.view check:indeterminate:selected, treeview.view check:indeterminate:selected:hover, treeview.view radio:selected, treeview.view radio:selected:hover, treeview.view radio:checked:selected, treeview.view radio:checked:selected:hover, treeview.view radio:indeterminate:selected, treeview.view radio:indeterminate:selected:hover {
+menu menuitem check:disabled, menu menuitem check:checked:disabled, menu menuitem check:indeterminate:disabled, menu menuitem radio:disabled, menu menuitem radio:checked:disabled, menu menuitem radio:indeterminate:disabled {
+  color: #949497;
+  border-color: #949497;
+}
+
+menu menuitem check:backdrop, menu menuitem check:checked:backdrop, menu menuitem check:indeterminate:backdrop, menu menuitem radio:backdrop, menu menuitem radio:checked:backdrop, menu menuitem radio:indeterminate:backdrop {
+  color: #949497;
+  border-color: #949497;
+}
+
+menu menuitem check:backdrop:disabled, menu menuitem check:checked:backdrop:disabled, menu menuitem check:indeterminate:backdrop:disabled, menu menuitem radio:backdrop:disabled, menu menuitem radio:checked:backdrop:disabled, menu menuitem radio:indeterminate:backdrop:disabled {
+  color: #d1d1d1;
+  border-color: #d1d1d1;
+}
+
+menu menuitem check:hover, menu menuitem check:selected, menu menuitem check:checked:hover, menu menuitem check:checked:selected, menu menuitem check:indeterminate:hover, menu menuitem check:indeterminate:selected, menu menuitem radio:hover, menu menuitem radio:selected, menu menuitem radio:checked:hover, menu menuitem radio:checked:selected, menu menuitem radio:indeterminate:hover, menu menuitem radio:indeterminate:selected {
   color: #ffffff;
   border-color: #ffffff;
 }
@@ -7476,12 +7504,22 @@ entry selection:disabled, modelbutton.flat:disabled:selected,
   color: #a5c8ec;
 }
 
-row:selected label:backdrop, label:backdrop:selected, .selection-mode button.titlebutton:backdrop, iconview:backdrop:selected:focus, .view:backdrop:selected, iconview:backdrop:selected, iconview text:backdrop:selected:focus,
+row:selected label:backdrop, label:backdrop:selected, .selection-mode button.titlebutton:backdrop, row:selected label:backdrop label, label:backdrop:selected label, .selection-mode button.titlebutton:backdrop label, row:selected label:backdrop image, label:backdrop:selected image, .selection-mode button.titlebutton:backdrop image, iconview:backdrop:selected:focus, .view:backdrop:selected, iconview:backdrop:selected, iconview text:backdrop:selected:focus,
 textview text:backdrop:selected:focus, .view text:backdrop:selected, iconview text:backdrop:selected,
 textview text:backdrop:selected, iconview text selection:backdrop:focus, .view text selection:backdrop, iconview text selection:backdrop,
 textview text selection:backdrop, flowbox flowboxchild:backdrop:selected, label:backdrop selection, spinbutton:not(.vertical) selection:backdrop,
 entry selection:backdrop, modelbutton.flat:backdrop:selected,
-.menuitem.button.flat:backdrop:selected, row:backdrop:selected, calendar:backdrop:selected {
+.menuitem.button.flat:backdrop:selected, row:backdrop:selected, calendar:backdrop:selected, iconview:backdrop:selected:focus label, .view:backdrop:selected label, iconview:backdrop:selected label, iconview text:backdrop:selected:focus label,
+textview text:backdrop:selected:focus label, .view text:backdrop:selected label, iconview text:backdrop:selected label,
+textview text:backdrop:selected label, iconview text selection:backdrop:focus label, .view text selection:backdrop label, iconview text selection:backdrop label,
+textview text selection:backdrop label, flowbox flowboxchild:backdrop:selected label, label:backdrop selection label, spinbutton:not(.vertical) selection:backdrop label,
+entry selection:backdrop label, modelbutton.flat:backdrop:selected label,
+.menuitem.button.flat:backdrop:selected label, row:backdrop:selected label, calendar:backdrop:selected label, iconview:backdrop:selected:focus image, .view:backdrop:selected image, iconview:backdrop:selected image, iconview text:backdrop:selected:focus image,
+textview text:backdrop:selected:focus image, .view text:backdrop:selected image, iconview text:backdrop:selected image,
+textview text:backdrop:selected image, iconview text selection:backdrop:focus image, .view text selection:backdrop image, iconview text selection:backdrop image,
+textview text selection:backdrop image, flowbox flowboxchild:backdrop:selected image, label:backdrop selection image, spinbutton:not(.vertical) selection:backdrop image,
+entry selection:backdrop image, modelbutton.flat:backdrop:selected image,
+.menuitem.button.flat:backdrop:selected image, row:backdrop:selected image, calendar:backdrop:selected image {
   color: #fcfcfc;
   box-shadow: none;
 }
@@ -7602,7 +7640,8 @@ stackswitcher button.text-button.circular {
 
 list.tweak-categories {
   background-image: image(#eeeeee);
-  border-width: 0px;
+  border-right-style: none;
+  border-right-width: 0px;
 }
 
 list.tweak-categories separator {
@@ -7661,6 +7700,10 @@ list.tweak-categories separator {
 
 .nautilus-window .floating-bar {
   background: rgba(255, 255, 255, 0.85);
+}
+
+#main-toolbar {
+  -gtk-icon-style: symbolic;
 }
 
 window.workbench docktabstrip docktab {

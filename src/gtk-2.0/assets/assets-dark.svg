@@ -647,9 +647,9 @@
      borderopacity="1"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.7070704"
-     inkscape:cx="77.448747"
-     inkscape:cy="134.64679"
+     inkscape:zoom="1.6487438"
+     inkscape:cx="498.09367"
+     inkscape:cy="380.49146"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="true"
@@ -657,7 +657,7 @@
      inkscape:snap-global="true"
      inkscape:snap-nodes="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1133"
+     inkscape:window-height="1075"
      inkscape:window-x="1366"
      inkscape:window-y="30"
      inkscape:window-maximized="1"
@@ -1602,7 +1602,7 @@
          ry="2.5" />
       <g
          clip-path="url(#clipPath6964)"
-         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#242429;stroke-opacity:1"
          transform="translate(50,-30)"
          id="g6954">
         <rect
@@ -1613,7 +1613,7 @@
            height="29"
            width="7"
            id="use6956"
-           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#4a90d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#242429;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
       </g>
       <g
          id="g6909"
@@ -1868,14 +1868,14 @@
       <g
          id="g7254"
          transform="translate(47,45)"
-         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#242429;stroke-opacity:1"
          clip-path="url(#clipPath7300)">
         <path
            sodipodi:nodetypes="sccssss"
            inkscape:connector-curvature="0"
            id="rect7256"
            d="m 4.5,81.5 5,0 0,29 -5,0 c -1.662,0 -3,-1.338 -3,-3 l 0,-23 c 0,-1.662 1.338,-3 3,-3 z"
-           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#4a90d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#242429;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
       </g>
       <g
          transform="translate(47,45)"
@@ -2164,11 +2164,11 @@
          ry="2.5" />
       <g
          clip-path="url(#clipPath7300)"
-         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#242429;stroke-opacity:1"
          transform="translate(47,45)"
          id="g7400">
         <path
-           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#4a90d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#242429;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
            d="m 4.5,81.5 5,0 0,29 -5,0 c -1.662,0 -3,-1.338 -3,-3 l 0,-23 c 0,-1.662 1.338,-3 3,-3 z"
            id="path7402"
            inkscape:connector-curvature="0"
@@ -3884,10 +3884,10 @@
       <g
          id="g4872"
          transform="translate(47,-32)"
-         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#242429;stroke-opacity:1"
          clip-path="url(#clipPath6964)">
         <rect
-           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#4a90d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#242429;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
            id="rect4874"
            width="7"
            height="29"
@@ -3978,11 +3978,11 @@
          ry="3" />
       <g
          clip-path="url(#clipPath7300)"
-         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#232729;stroke-opacity:1"
          transform="translate(47,45)"
          id="g4958">
         <path
-           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#232729;stroke:#4a90d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate;fill-opacity:1"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#232729;stroke:#232729;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate;fill-opacity:1"
            d="m 4.5,81.5 5,0 0,29 -5,0 c -1.662,0 -3,-1.338 -3,-3 l 0,-23 c 0,-1.662 1.338,-3 3,-3 z"
            id="path4960"
            inkscape:connector-curvature="0"
@@ -4112,14 +4112,14 @@
       <g
          id="g5055"
          transform="translate(47,45)"
-         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#232729;stroke-opacity:1"
          clip-path="url(#clipPath7300)">
         <path
            sodipodi:nodetypes="sccssss"
            inkscape:connector-curvature="0"
            id="path5059"
            d="m 4.5,81.5 5,0 0,29 -5,0 c -1.662,0 -3,-1.338 -3,-3 l 0,-23 c 0,-1.662 1.338,-3 3,-3 z"
-           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#4a90d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#232729;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
       </g>
       <g
          transform="translate(47,45)"

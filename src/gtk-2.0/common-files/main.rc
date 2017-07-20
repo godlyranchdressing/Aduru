@@ -1507,8 +1507,8 @@ style "menubar" {
 
 style "menubar_item" {
 
-  xthickness = 3
-  ythickness = 4
+  xthickness = 2
+  ythickness = 3
 
   fg[NORMAL] = @window_text_color
   fg[PRELIGHT] = @selected_bg_color
@@ -1539,7 +1539,7 @@ style "menu" {
 style "menu_item" {
 
   xthickness = 3
-  ythickness = 4
+  ythickness = 3
 
   bg[PRELIGHT]   = @selected_bg_color
   # Chromium uses this setting
@@ -1776,8 +1776,8 @@ style "separator_menu_item" {
 
 style "button" {
 
-  xthickness = 2
-  ythickness = 2
+  xthickness = 0
+  ythickness = 0
 
   # For the sake of sanity style buttons this way
   engine "pixmap" {
@@ -1847,14 +1847,14 @@ style "entry" {
   # We set this same as the border of the border of the entry
   # This way there's no overlap
   xthickness = 4
-  ythickness = 4
+  ythickness = 2
 
 }
 
 style "combobox" {
 
   xthickness = 6
-  ythickness = 4
+  ythickness = 2
 
   # This affects only the button beside an entry
   GtkButton::inner-border = {0, 0, 0, 0}

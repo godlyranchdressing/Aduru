@@ -40,7 +40,7 @@
   }
   @else {
     @return inset #{$left}px #{$top}px $color, inset -#{$right}px -#{$bottom}px $color;
-
+    
     &:backdrop {
       box-shadow: inset #{$left}px #{$top}px $backdrop_border_color, inset -#{$right}px -#{$bottom}px $backdrop_border_color;
     }
@@ -58,7 +58,8 @@
 }
 
 @function entry_focus_shadow($fc: $primary_color) {
-  @return inset 0 0 0 1px $fc;
+  // @return inset 0 0 0 1px $fc;
+  @return none;
 }
 
 @mixin entry($t, $fc: $primary_color, $edge: none) {
