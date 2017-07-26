@@ -99,16 +99,6 @@
           box-shadow: none;
         }
       }
-
-      &:hover, &:focus {
-        @extend %icon_tile:hover;
-        box-shadow: none !important;
-      }
-
-      &:active, &:checked {
-        @extend %icon_tile:active;
-        box-shadow: none !important;
-      }
     }
   }
 }
@@ -121,7 +111,11 @@
       background-color: rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 -3px if($variant == "light", $insensitive_fg_color, $panel_fg_color);
       transition-duration: 150ms;
-      width: 100%;
+      width: 100% !important;
+    }
+
+    .app-well-app:hover {
+      transform: scale(1.2)
     }
 
     .app-well-app.focused, .app-well-app:hover {

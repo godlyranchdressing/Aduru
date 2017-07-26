@@ -3,8 +3,10 @@ THEME="Aduru"
 cd Compiled
 
 for variant in '' '-Dark' '-Darker'; do
-  cd $THEME${variant}
-  tar -czf $THEME${variant}.tar.gz *
-  mv $THEME${variant}.tar.gz ../..
+  for size in '' '-Compact'; do
+  cd $THEME${variant}${size}
+  tar -czf $THEME${variant}${size}.tar.gz *
+  mv $THEME${variant}${size}.tar.gz ../..
   cd ..
+done
 done

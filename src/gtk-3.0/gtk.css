@@ -236,32 +236,15 @@ spinner:checked:disabled {
  ****************/
 spinbutton:not(.vertical),
 entry {
+  min-height: 32px;
+  padding-left: 8px;
+  padding-right: 8px;
   border: 1px solid;
   border-radius: 6px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   color: #5e5e5e;
   border-color: #c4c4c4;
   background-color: #fff;
-  box-shadow: inset 0 0 0 1px rgba(74, 144, 217, 0);
-}
-
-spinbutton:not(.vertical), spinbutton:not(.vertical) notebook > header > tabs > arrow, spinbutton:not(.vertical)
-.app-notification.frame button,
-.app-notification.frame spinbutton:not(.vertical) button, spinbutton:not(.vertical)
-button,
-entry,
-entry notebook > header > tabs > arrow,
-entry .app-notification button, .app-notification
-entry button,
-entry
-.app-notification.frame button,
-.app-notification.frame
-entry button,
-entry
-button {
-  min-height: 24px;
-  min-width: 16px;
-  padding: 2px 6px;
 }
 
 spinbutton:not(.vertical) image.left,
@@ -312,7 +295,6 @@ entry.flat {
 
 spinbutton:focus:not(.vertical),
 entry:focus {
-  box-shadow: inset 0 0 0 1px #4A90D9;
   border-color: #4A90D9;
 }
 
@@ -349,7 +331,6 @@ entry.error {
 
 spinbutton.error:focus:not(.vertical),
 entry.error:focus {
-  box-shadow: inset 0 0 0 1px #e62237;
   border-color: #e62237;
 }
 
@@ -366,7 +347,6 @@ entry.warning {
 
 spinbutton.warning:focus:not(.vertical),
 entry.warning:focus {
-  box-shadow: inset 0 0 0 1px #E75731;
   border-color: #E75731;
 }
 
@@ -417,7 +397,7 @@ entry:focus {
   border-color: #4A90D9;
   background-color: rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
-  box-shadow: inset 0 0 0 1px #4A90D9;
+  box-shadow: none;
 }
 
 .osd spinbutton:backdrop:not(.vertical), .osd
@@ -630,6 +610,9 @@ treeview entry.flat:focus, treeview entry:focus {
 notebook > header > tabs > arrow, .app-notification button,
 .app-notification.frame button,
 button {
+  min-height: 24px;
+  min-width: 16px;
+  padding: 4px 8px;
   border: 1px solid;
   border-radius: 6px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -4838,11 +4821,12 @@ menu menuitem check, menu menuitem check:hover, menu menuitem check:disabled, me
 radio, menu menuitem
 radio:hover, menu menuitem
 radio:disabled {
-  min-height: 14px;
-  min-width: 14px;
+  min-height: 12px;
+  min-width: 12px;
   background-image: none;
   background-color: transparent;
-  box-shadow: none;
+  border-width: 0px;
+  box-shadow: 0 0 0 1px #c4c4c4;
   -gtk-icon-shadow: none;
   color: inherit;
   border-color: currentColor;
@@ -7148,9 +7132,9 @@ tooltip {
 }
 
 tooltip.background {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(36, 36, 41, 0.85);
   background-clip: padding-box;
-  border: 1px solid #c4c4c4;
+  border: 1px solid #18181c;
 }
 
 tooltip decoration {
@@ -7160,7 +7144,7 @@ tooltip decoration {
 tooltip * {
   padding: 2px;
   background-color: transparent;
-  color: #5e5e5e;
+  color: #F7F7F7;
 }
 
 /*****************

@@ -244,7 +244,7 @@ assistant {
   }
 
   .sidebar label {
-    padding: 6px 12px;
+    padding: ($normal_padding + 2) $larger_padding;
   }
 
   .sidebar label.highlight {
@@ -302,12 +302,8 @@ spinner {
 %entry,
 entry {
   %entry_basic, & {
-    @at-root %standard_dimensions, & {
-      min-height: $button_height;
-      min-width: $button_width;
-      padding: $button_v_padding $button_h_padding;
-    }
-
+    min-height: $normal_size;
+    padding: ($normal_padding) ($normal_padding * 2);
     border: 1px solid;
     border-radius: $standard_radius;
     transition: all 200ms $ease-out-quad;
@@ -605,7 +601,9 @@ $_dot_color: if($variant == "light", $primary_color, lighten($primary_color, 15%
 %button,
 button {
   @at-root %button_basic, & {
-    @extend %standard_dimensions;
+    min-height: $normal_size;
+    min-width: $small_size;
+    padding: $normal_padding ($normal_padding * 2);
     border: 1px solid;
     border-radius: $standard_radius;
     transition: $button_transition;
@@ -735,11 +733,11 @@ button {
 
   // big standalone buttons like in Documents pager
   &.osd {
-    min-width: 24px;
-    min-height: 32px;
+    min-width: $normal_size;
+    min-height: $large_size;
 
     &.image-button {
-      min-width: 32px;
+      min-width: $large_size;
     }
 
     color: $osd_fg_color;
@@ -1235,9 +1233,9 @@ toolbar.inline-toolbar toolbutton:backdrop {
 modelbutton.flat,
 .menuitem.button.flat {
   transition: $button_transition;
-  min-height: $button_height;
-  padding-left: 5px;
-  padding-right: 5px;
+  min-height: ($normal_size + 4);
+  padding-left: ($normal_padding + 1);
+  padding-right: ($normal_padding + 1);
   border-radius: 0px;
   outline-offset: -2px;
 
@@ -1278,7 +1276,7 @@ modelbutton.flat arrow {
 }
 
 button.color {
-  padding: 4px;
+  padding: $normal_padding;
 
   colorswatch:only-child {
     &, overlay {
@@ -1405,7 +1403,7 @@ spinbutton {
     }
 
     button {
-      min-height: 16px;
+      min-height: $small_size;
       margin: 0;
       padding-bottom: 0;
       padding-top: 0;
@@ -1543,15 +1541,15 @@ spinbutton {
     }
 
     entry {
-      min-height: 32px;
-      min-width: 32px;
+      min-height: $large_size;
+      min-width: $large_size;
       padding: 0;
       border-radius: 0;
     }
 
     button {
-      min-height: 32px;
-      min-width: 32px;
+      min-height: $large_size;
+      min-width: $large_size;
       padding: 0;
 
       @include colored_focus;
@@ -1616,8 +1614,8 @@ spinbutton {
 combobox {
   arrow {
     -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
-    min-height: 16px;
-    min-width: 16px;
+    min-height: $small_size;
+    min-width: $small_size;
   }
 
   &.linked {
@@ -1688,7 +1686,7 @@ combobox {
  ************/
 %toolbar {
   -GtkWidget-window-dragging: true;
-  padding: 4px;
+  padding: $normal_padding;
   background-color: $bg_color;
   border-color: $border_color;
 
@@ -1702,11 +1700,11 @@ toolbar {
 
   &:not(.inline-toolbar) > toolbutton button {
     &, &.flat {
-      padding: 4px;
+      padding: $normal_padding;
     }
   }
 
-  padding: 4px 3px 3px 4px;
+  padding: $normal_padding ($normal_padding - 1) ($normal_padding - 1) $normal_padding;
 
   // on OSD
   .osd & {
@@ -1715,7 +1713,7 @@ toolbar {
 
   // stand-alone OSD toolbars
   &.osd {
-    padding: 13px;
+    padding: ($larger_padding + 1);
     border: none;
     border-radius: $standard_radius;
     background-color: $osd_bg_color;
@@ -1796,7 +1794,7 @@ searchbar,
 headerbar {
   color: $headerbar_fg_color;
   padding: 0 6px;
-  min-height: 38px;
+  min-height: ($large_size + 8);
   border-width: 0 0 1px;
   border-style: solid;
   border-color: if($variant == "light" and $darker == false, $border_color, $dark_alt_border_color);
@@ -1975,12 +1973,12 @@ headerbar {
   // squared corners when the window is maximized or tiled
 
   &.default-decoration {
-    min-height: 26px;
-    padding: 4px;
+    min-height: 28px;
+    padding: $normal_padding;
 
     button.titlebutton {
-      min-height: 24px;
-      min-width: 24px;
+      min-height: 26px;
+      min-width: 26px;
       margin: 0;
       padding: 0;
     }
@@ -2565,8 +2563,8 @@ menubar,
 
   > menuitem {
     transition: $button_transition;
-    min-height: 16px;
-    padding: $button_v_padding $button_h_padding;
+    min-height: $small_size;
+    padding: $normal_padding $large_padding;
 
     &:hover {
       //Seems like it :hover even with keyboard focus
@@ -2587,7 +2585,7 @@ menu,
   margin: 4px;
 
   // See https://bugzilla.gnome.org/show_bug.cgi?id=591258
-  padding: 2px 0px;
+  padding: $small_padding;
   background-color: $menu_color;
   border: 1px solid $border_color;
 
@@ -2604,9 +2602,9 @@ menu,
   }
 
   menuitem {
-    min-height: 16px;
-    min-width: 40px;
-    padding: 4px 6px;
+    min-height: $small_size;
+    min-width: ($large_size + 8);
+    padding: $normal_padding ($normal_padding + 2);
     text-shadow: none;
 
     &:hover {
@@ -2630,8 +2628,8 @@ menu,
 
     // submenu indicators
     arrow {
-      min-height: 16px;
-      min-width: 16px;
+      min-height: $small_size;
+      min-width: $small_size;
 
       &:dir(ltr) {
         -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
@@ -2657,9 +2655,9 @@ menu,
   > arrow {
     @include button(undecorated);
 
-    min-height: 16px;
-    min-width: 16px;
-    padding: 4px;
+    min-height: $small_size;
+    min-width: $small_size;
+    padding: $normal_padding;
     background-color: $menu_color;
     border-radius: 0;
 
@@ -2698,8 +2696,8 @@ menuitem {
 
   check,
   radio {
-    min-height: 16px;
-    min-width: 16px;
+    min-height: $small_size;
+    min-width: $small_size;
 
     &:dir(ltr) {
       margin-right: 7px;
@@ -2974,8 +2972,8 @@ notebook {
 
       @extend %button_basic.flat;
 
-      min-height: 16px;
-      min-width: 16px;
+      min-height: $small_size;
+      min-width: $small_size;
       border-radius: 0;
 
       &:hover:not(:active):not(:backdrop) {
@@ -2993,9 +2991,9 @@ notebook {
 
     tab {
       @at-root &, %tab {
-        min-height: $button_height + 2;
-        min-width: 30px;
-        padding: 4px 12px;
+        min-height: $large_size - 2;
+        min-width: $large_size - 2;
+        padding: $normal_padding ($normal_padding * 3);
         outline-offset: -5px;
         background-color: $bg_color;
         transition: $button_transition;
@@ -3343,7 +3341,7 @@ switch {
   }
 
   slider {
-    min-height: 26px;
+    min-height: ($normal_size + 2);
     min-width: 20px;
     border-radius: $standard_radius;
     transition: $button_transition;
@@ -3432,8 +3430,8 @@ switch {
     -gtk-icon-shadow: none;
     -gtk-icon-source: -gtk-scaled(url("assets/checkbox#{$as}.png"), url("assets/checkbox#{$as}@2.png"));
     background-color: transparent;
-    min-width: 40px;
-    min-height: 40px;
+    min-width: $large_size + 8;
+    min-height: $large_size + 8;
     background-image: none;
     transition: none;
     box-shadow: none;
@@ -3542,13 +3540,11 @@ radio {
     // this is a workaround for a menu check/radio size allocation issue
 
     &, &:hover, &:disabled {
-      //FIXME use button reset mixin
       min-height: 12px;
       min-width: 12px;
       background-image: none;
       background-color: transparent;
-      border-width: 0px;
-      box-shadow: 0 0 0 1px $border_color;
+      border: 1px solid $border_color;
       -gtk-icon-shadow: none;
       color: inherit;
       border-color: currentColor;
@@ -3886,13 +3882,13 @@ scale {
     &.horizontal {
       padding-top: 9px;
       padding-bottom: 9px;
-      min-height: 16px;
+      min-height: $small_size;
     }
 
     &.vertical {
       padding-left: 9px;
       padding-right: 9px;
-      min-width: 16px;
+      min-width: $small_size;
     }
 
     slider {
@@ -4438,13 +4434,13 @@ progressbar {
  *************/
 levelbar {
   block {
-    min-width: 32px;
+    min-width: $large_size;
 
     @extend %bar_horizontal;
   }
 
   &.vertical block {
-    min-height: 32px;
+    min-height: $large_size;
 
     @extend %bar_vertical;
   }
@@ -4735,7 +4731,7 @@ row {
  *********************/
 .app-notification,
 .app-notification.frame {
-  padding: 10px;
+  padding: $large_padding + 2;
   border-radius: 0 0 $standard_radius $standard_radius;
   border: 1px solid $border_color;
   border-width: 0 1px 1px 1px;
@@ -4769,8 +4765,8 @@ row {
  *************/
 expander {
   arrow {
-    min-width: 16px;
-    min-height: 16px;
+    min-width: $small_size;
+    min-height: $small_size;
     -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
 
     &:dir(rtl) {
@@ -4869,7 +4865,7 @@ messagedialog {
     }
 
     .dialog-action-area button {
-      padding: 10px 14px;
+      padding: ($large_padding +2) ($larger_padding + 2);
 
       // labels are not vertically centered on message dialog, this is a workaround
       border-radius: 0;
@@ -5038,7 +5034,7 @@ stacksidebar {
   }
 
   row {
-    padding: 8px 4px;
+    padding: ($large_padding + 2) $normal_padding;
 
     > label {
       padding-left: 6px;
@@ -5065,13 +5061,13 @@ placessidebar {
 
   row {
     // Needs overriding of the GtkListBoxRow padding
-    min-height: 32px;
+    min-height: $large_size;
     padding: 0px;
 
     // Using margins/padding directly in the SidebarRow
     // will make the animation of the new bookmark row jump
     > revealer {
-      padding: 0 12px;
+      padding: 0 $larger_padding;
     }
 
     &:selected {
@@ -5123,8 +5119,8 @@ placessidebar {
 
       @extend %button_selected.flat;
 
-      min-height: 26px;
-      min-width: 26px;
+      min-height: $normal_size + 2;
+      min-width: $normal_size + 2;
       margin-top: 3px;
       margin-bottom: 3px;
       padding: 0;
@@ -5344,9 +5340,9 @@ tooltip {
   &.background {
     // background-color needs to be set this way otherwise it gets drawn twice
     // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
-    background-color: transparentize($base_color, 0.15);
+    background-color: transparentize($dark_base_color, 0.15);
     background-clip: padding-box;
-    border: 1px solid $border_color;
+    border: 1px solid $dark_border_color;
 
     // this suble border is meant to
     // not make the tooltip melt with
@@ -5372,7 +5368,7 @@ tooltip {
     // Yeah this is ugly
     padding: 2px;
     background-color: transparent;
-    color: $fg_color;
+    color: $light_fg_color;
   }
 }
 
@@ -5651,7 +5647,7 @@ decoration {
 
   .solid-csd & {
     margin: 0;
-    padding: 4px;
+    padding: $normal_padding;
     background-color: $border_color;
     border: solid 1px $border_color;
     border-radius: 0;
@@ -5670,7 +5666,7 @@ button.titlebutton {
   border-radius: $circular_radius;
   min-height: 0;
   min-width: 8px;
-  padding: 4px;
+  padding: $normal_padding;
 
   .selection-mode & {
     @extend %button.flat.suggested-action;
@@ -5826,7 +5822,7 @@ stackswitcher button.text-button {
 stackswitcher button.circular,
 stackswitcher button.text-button.circular {
   // FIXME aggregate with buttons
-  min-width: 32px;
-  min-height: 32px;
+  min-width: $large_size;
+  min-height: $large_size;
   padding: 0;
 }
