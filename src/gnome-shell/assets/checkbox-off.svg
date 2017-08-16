@@ -11,12 +11,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="5.2916245mm"
-   height="5.291687mm"
-   viewBox="0 0 5.2916245 5.291687"
+   width="4.2333655mm"
+   height="4.2333012mm"
+   viewBox="0 0 4.2333655 4.2333012"
    version="1.1"
    id="svg5359"
-   inkscape:version="0.92.1 r15371"
+   inkscape:version="0.92+devel unknown"
    sodipodi:docname="checkbox-off.svg">
   <defs
      id="defs5353">
@@ -58,17 +58,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="13.673677"
-     inkscape:cx="7.3878227"
-     inkscape:cy="14.528998"
+     inkscape:zoom="19.127391"
+     inkscape:cx="-3.8574372"
+     inkscape:cy="-1.8690229"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1068"
-     inkscape:window-x="0"
+     inkscape:window-height="1133"
+     inkscape:window-x="1366"
      inkscape:window-y="30"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0" />
   <metadata
      id="metadata5356">
     <rdf:RDF>
@@ -85,22 +86,22 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-35.103918,-146.18749)">
+     transform="translate(-35.103916,-147.24586)">
     <g
        id="g5400"
-       transform="matrix(0.33503859,0,0,0.3352382,29.373093,135.97354)"
-       style="display:inline;stroke-width:0.7893613">
+       transform="matrix(0.26450929,0,0,0.26465772,30.607335,139.2102)"
+       style="display:inline;stroke-width:0.99985546">
       <rect
-         ry="2.4356594"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#linearGradient5691);fill-opacity:1;stroke:#c4c4c4;stroke-width:0.7894749;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         ry="3.0852153"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#linearGradient5691);fill-opacity:1;stroke:#c4c4c4;stroke-width:0.9999994;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
          id="rect5147-9-1-5-7-6"
          width="15.004601"
          height="14.995382"
          x="17.499708"
          y="30.862469"
-         rx="2.4044702" />
+         rx="3.045603" />
       <path
-         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.78936142;marker:none;enable-background:accumulate"
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9998557;marker:none;enable-background:accumulate"
          d="m 18,34.737183 v -1 c 0,-1.333912 1.044053,-2.375 2.34375,-2.375 h 9.312788 c 1.299697,0 2.3125,1.041088 2.3125,2.375 v 1 c 0,-1.333912 -1.012803,-2.375 -2.3125,-2.375 H 20.34375 c -1.299697,0 -2.34375,1.041088 -2.34375,2.375 z"
          id="rect5147-9-1-5-7-6-1-7-7-5"
          inkscape:connector-curvature="0"

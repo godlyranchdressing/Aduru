@@ -1847,7 +1847,7 @@ style "entry" {
   # We set this same as the border of the border of the entry
   # This way there's no overlap
   xthickness = 4
-  ythickness = 2
+  ythickness = 4
 
 }
 

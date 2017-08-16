@@ -53,6 +53,7 @@
 // Tweak Tool
 list.tweak-categories {
   background-image: image($sidebar_bg_color);
+  border-image: image($sidebar_bg_color);
   border-right-style: none;
   border-right-width: 0px;
 
@@ -154,9 +155,9 @@ window.workbench {
 
     button.model {
       transition: $button_transition;
-      min-height: 28px;
-      padding-left: 5px;
-      padding-right: 5px;
+      min-height: $normal_size + 4;
+      padding-left: $normal_padding + 1;
+      padding-right: $normal_padding + 1;
       border-radius: 0px;
       outline-offset: -2px;
     }
@@ -175,17 +176,19 @@ window.workbench {
   background-image: image($success_color);
 }
 
+button.tile.view:active {
+  label, image {
+    color: $fg_color;
+  }
+}
+
 headerbar button.toolbar-primary-buttons-software {
-  @if $darker == true {
-    @each $a_type, $b_type in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":backdrop", "backdrop") {
-      &#{$a_type} {
+  @each $a_type, $b_type in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":backdrop", "backdrop") {
+    &#{$a_type} {
+      @if $darker == true {
         @include button($b_type, $dark_base_color, $light_fg_color);
       }
-    }
-  }
-  @else {
-    @each $a_type, $b_type in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":backdrop", "backdrop") {
-      &#{$a_type} {
+      @else {
         @include button($b_type);
       }
     }

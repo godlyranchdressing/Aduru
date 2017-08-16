@@ -4,7 +4,7 @@
 $base_color: if($variant == "light", $light_base_color, $dark_base_color);
 $bg_color: if($variant == "light", $light_bg_color, $dark_bg_color);
 $fg_color: if($variant == "light", $dark_fg_color, $light_fg_color);
-$text_color: transparentize($fg_color, .2);
+$text_color: if($variant == "light", $dark_text_color, $light_text_color);
 $panel_fg_color: $light_fg_color;
 //
 $selected_fg_color: #ffffff;

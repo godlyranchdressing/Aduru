@@ -1,63 +1,66 @@
 #! /bin/bash
-VARIANTS="variants.txt"
-COMPILED_FOLDER="scss/compiled-css"
-OUTPUT="Compiled"
+THEME="Aduru"
 
-# GTK2 #
-COMMON_FOLDER="src/gtk-2.0/common-files"
-ASSETS_FOLDER="src/gtk-2.0/variant-assets"
-###
-
-  echo "Compiling and copying..."
-  for variant in "","", "-Dark","-dark"; do IFS=","; set -- $variant;
-    sassc -t expanded src/gnome-shell/gnome-shell${1,,}.scss $OUTPUT/Aduru${1^}/gnome-shell/gnome-shell.css
-    rm $OUTPUT/Aduru${1^}/gnome-shell/assets/* -R
-    cp src/gnome-shell/assets-common/* $OUTPUT/Aduru${1^}/gnome-shell/assets/ -R
-    cp src/gnome-shell/assets${2,,}/* $OUTPUT/Aduru${1^}/gnome-shell/assets/ -R
-done
-
-for variant in "","" "-Dark","-dark", "", "-Darker"; do
-  if [ $1="-Dark" ]; then
-    for size in "", "-Compact"; do
-      sassc -t expanded src/gtk-3.0/gtk-dark${size,,}.scss $OUTPUT/Aduru-Dark${size}/gtk-3.0/gtk.css
-      cp src/gtk-3.0/assets/*dark* $OUTPUT/Aduru-Dark${size}/gtk-3.0/assets
-      cp src/gtk-2.0/common-files/* $OUTPUT/Aduru-Dark${size}/gtk-2.0/
-      if [ $size="-Compact" ]; then
-        cp src/gtk-2.0/common-files-compact/* $OUTPUT/Aduru-Dark${size}/gtk-2.0/
-      fi
-      cp src/gtk-2.0/dark-variant-files/* $OUTPUT/Aduru-Dark${size}/gtk-2.0/
-      cp src/gtk-2.0/assets/common-assets/* $OUTPUT/Aduru-Dark${size}/gtk-2.0/assets
-      cp src/gtk-2.0/assets/dark-assets/* $OUTPUT/Aduru-Dark${size}/gtk-2.0/assets
-      cp src/gtk-2.0/gtkrc-dark $OUTPUT/Aduru-Dark${size}/gtk-2.0/gtkrc
-    done
-  fi
-
-  if [ $1="-Darker" ]; then
-    for size in "", "-Compact"; do
-      sassc -t expanded src/gtk-3.0/gtk-darker${size,,}.scss $OUTPUT/Aduru-Darker${size}/gtk-3.0/gtk.css
-      sassc -t expanded src/gtk-3.0/gtk-dark${size,,}.scss $OUTPUT/Aduru-Darker${size}/gtk-3.0/gtk-dark.css
-      cp src/gtk-3.0/assets/* $OUTPUT/Aduru-Darker${size}/gtk-3.0/assets
-      cp src/gtk-2.0/common-files/* $OUTPUT/Aduru-Darker${size}/gtk-2.0/
-      if [ $size="-Compact" ]; then
-        cp src/gtk-2.0/common-files-compact/* $OUTPUT/Aduru-Darker${size}/gtk-2.0/
-      fi
-      cp src/gtk-2.0/assets/common-assets/* $OUTPUT/Aduru-Darker${size}/gtk-2.0/assets
-      cp src/gtk-2.0/assets/light-assets/* $OUTPUT/Aduru-Darker${size}/gtk-2.0/assets
-      cp src/gtk-2.0/gtkrc-darker $OUTPUT/Aduru-Darker${size}/gtk-2.0/gtkrc
-    done
-  fi
-
-  for size in "", "-Compact"; do
-    sassc -t expanded src/gtk-3.0/gtk${size,,}.scss $OUTPUT/Aduru${size}/gtk-3.0/gtk.css
-    sassc -t expanded src/gtk-3.0/gtk-dark${size,,}.scss $OUTPUT/Aduru${size}/gtk-3.0/gtk-dark.css
-    cp src/gtk-3.0/assets/* $OUTPUT/Aduru${size}/gtk-3.0/assets
-    cp src/gtk-2.0/common-files/* $OUTPUT/Aduru${size}/gtk-2.0/
-    if [ $size="-Compact" ]; then
-      cp src/gtk-2.0/common-files-compact/* $OUTPUT/Aduru${size}/gtk-2.0/
-    fi
-    cp src/gtk-2.0/assets/common-assets/* $OUTPUT/Aduru${size}/gtk-2.0/assets
-    cp src/gtk-2.0/assets/light-assets/* $OUTPUT/Aduru${size}/gtk-2.0/assets
-    cp src/gtk-2.0/gtkrc-light $OUTPUT/Aduru${size}/gtk-2.0/gtkrc
+for variant in "","", "-Dark","-dark"; do IFS=","; set -- $variant;
+  for size in "" "-Compact"; do
+    INPUT=src/gnome-shell
+    OUTPUT=Compiled/$THEME$1$size/gnome-shell
+    sassc -t expanded $INPUT/gnome-shell$2.scss $OUTPUT/gnome-shell.css
+    rm $OUTPUT/assets/* -R
+    cp $INPUT/assets-common/* $OUTPUT/assets/ -R
+    cp $INPUT/assets$2/* $OUTPUT/assets/
   done
-  break
+done
+for buttons in "", "-OSX"; do
+  if [[ $buttons != "-OSX" ]]; then
+    # get rid of some whitespace that just won't go away
+    buttons=""
+  fi
+
+  for variant in "","" "-dark","-Dark" "-darker","-Darker"; do IFS=","; set -- $variant;
+    for size in "" "-Compact"; do
+      INPUT=src/gtk-3.0
+      if [[ "$buttons" = "-OSX" ]]; then
+        OUTPUT=Compiled/$THEME$buttons$2$size/gtk-3.0
+        if [[ "$2" != "-Dark" ]]; then
+          sassc -t expanded $INPUT/gtk${buttons,,}${1}${size,,}.scss $OUTPUT/gtk.css
+          sassc -t expanded $INPUT/gtk${buttons,,}-dark${size,,}.scss $OUTPUT/gtk-dark.css
+          # rm $OUTPUT/assets/*
+          cp $INPUT/assets/* $OUTPUT/assets
+        else
+          sassc -t expanded $INPUT/gtk${buttons,,}${1}${size,,}.scss $OUTPUT/gtk.css
+          cp $INPUT/assets/*dark* $OUTPUT/assets
+        fi
+      else
+        OUTPUT=Compiled/$THEME$2$size/gtk-3.0
+        if [[ "$2" != "-Dark" ]]; then
+          sassc -t expanded $INPUT/gtk${1}${size,,}.scss $OUTPUT/gtk.css
+          sassc -t expanded $INPUT/gtk-dark${size,,}.scss $OUTPUT/gtk-dark.css
+          # rm $OUTPUT/assets/*
+          cp $INPUT/assets/* $OUTPUT/assets
+        else
+          sassc -t expanded $INPUT/gtk${1}${size,,}.scss $OUTPUT/gtk.css
+          cp $INPUT/assets/*dark* $OUTPUT/assets
+        fi
+      fi
+
+      for size in "" "-Compact"; do
+        INPUT=src/gtk-2.0
+        OUTPUT=Compiled/$THEME${buttons}$2$size/gtk-2.0
+
+        if [[ "$2" != "-Dark" ]]; then
+          cp $INPUT/common-files${size,,}/* $OUTPUT/
+          cp $INPUT/assets/light-assets/* $OUTPUT/assets
+          cp $INPUT/gtkrc$1 $OUTPUT/gtkrc
+        else
+          cp $INPUT/common-files${size,,}/* $OUTPUT/
+          cp $INPUT/assets/dark-assets/* $OUTPUT/assets
+          cp $INPUT/dark-variant-files/* $OUTPUT/
+          cp $INPUT/gtkrc$1 $OUTPUT/gtkrc
+        fi
+
+        cp $INPUT/assets/common-assets/* $OUTPUT/assets
+      done
+    done
+  done
 done

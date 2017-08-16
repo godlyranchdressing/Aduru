@@ -19,7 +19,7 @@
 /* GLOBALS */
 $font-size: 11;
 $menu_slice: 16 16 16 16;
-$font-family: Overpass, Cantarell, Sans-Serif;
+$font-family: Roboto, Cantarell, Sans-Serif;
 $_wm_border: if($variant == "light", transparentize(black, 0.77), transparentize($border_color, 0.1));
 $_shadow_border: 0 2px 4px 1px transparentize(black, 0.5), 0 0 0 1px $_wm_border;
 
@@ -900,7 +900,6 @@ StScrollBar {
 %osd-panel {
   border-radius: $standard_radius;
   color: $fg_color;
-  box-shadow: $_shadow_border;
   background-color: $base_color;
   border: 1px solid $border_color;
 }
@@ -1159,11 +1158,11 @@ StScrollBar {
 
   &:focus,
   &:hover {
-    background-color: $hover;
+    background-color: transparent;
   }
 
   &:active {
-    background-color: $active;
+    background-color: transparent;
   }
 }
 
@@ -1343,31 +1342,18 @@ StScrollBar {
 }
 
 .message {
-  border-radius: 0 $standard_radius $standard_radius 0;
-  border: 1px solid $border_color;
-  border-bottom-width: 0px !important;
-  box-shadow: inset 0 -1px $border_color;
-  background-color: mix($bg_color, $base_color, 50%);
-
   &:focus,
   &:hover {
     background-color: $hover;
   }
-}
 
-.message-icon-bin {
-  background-color: $primary_color;
-  box-shadow: inset 2px 0 darken($primary_color, 10%);
-  min-width: 62px;
-  padding: 20px 0 16px 0;
-
-  &:rtl {
-    padding: 20px 0 16px 0;
+  &:active {
+    background-color: $active;
   }
 }
 
 .message-icon-bin > StIcon {
-  color: $light_fg_color;
+  color: $fg_color;
   icon-size: 16px;
   -st-icon-style: symbolic;
 }
@@ -1412,7 +1398,11 @@ StScrollBar {
   }
 
   &:hover {
-    color: $fg_color;
+    color: $primary_color;
+  }
+
+  &:active {
+    color: darken($primary_color, 5%);
   }
 
   &:insensitive {
@@ -1656,7 +1646,7 @@ StScrollBar {
   width: 320px;
   padding: 6px 8px;
 
-  @include entry($light_fg_color, $panel_bg_color);
+  @include entry($light_fg_color, $dark_base_color);
 
   &:focus, &:hover {
     .search-entry-icon {
@@ -2021,7 +2011,7 @@ StScrollBar {
 
 /* NOTIFICATIONS & MESSAGE TRAY */
 .url-highlighter {
-  link-color: lighten($primary_color, 10%);
+  link-color: lighten($accent_color, 10%);
 }
 
 // Banners
@@ -2030,16 +2020,24 @@ StScrollBar {
   font-size: 11pt;
   width: 34em;
   margin: 0;
-  border-radius: 0 0 $standard_radius 0;
-  border-right: 1px solid $border_color;
-  border-bottom: 1px solid $border_color !important;
-  border-left-width: 0px !important;
-  border-top-width: 0px !important;
-  box-shadow: -2px 0 darken($primary_color, 10%);
-  background-color: $base_color;
+  border: 1px solid $dark_border_color;
+  border-radius: 0 0 $standard_radius $standard_radius;
+  background-color: $dark_base_color;
+
+  .message-icon-bin > StIcon {
+    color: $light_fg_color;
+  }
+
+  .message-title {
+    color: $light_fg_color;
+  }
+
+  .message-content {
+    color: $light_text_color;
+  }
 
   &:hover, &:active {
-    background-color: $base_color;
+    background-color: $dark_base_color;
   }
 
   .notification-icon {
@@ -2056,29 +2054,31 @@ StScrollBar {
   }
 
   .notification-actions {
-    background-color: $base_color;
     padding-top: 0px;
     border-radius: 0 0 $standard_radius $standard_radius;
+    background-color: $dark_base_color;
   }
 
   .notification-button {
     padding: 4px 4px 5px;
+    border-color: $dark_border_color;
     spacing: 0px;
+  }
 
-    @include button(normal);
+  .button, .notification-button {
+    @include button(normal, $dark_base_color, $light_fg_color);
 
     &:hover, &:focus {
-      @include button(hover);
+      @include button(hover, $dark_base_color, $light_fg_color);
     }
 
     &:active {
-      @include button(active);
+      @include button(active, $dark_base_color, $light_fg_color);
     }
 
     &:insensitive {
-      @include button(insensitive);
+      @include button(insensitive, $dark_base_color, $light_fg_color);
     }
-
 
     &:first-child:last-child {
       border-radius: 0 0 $standard_radius $standard_radius;
@@ -2088,12 +2088,12 @@ StScrollBar {
 
     &:first-child {
       border-radius: 0 0 0 $standard_radius;
-      border-right: 1px solid $border_color;
+      border-right: 1px solid $dark_border_color;
     }
 
     &:last-child {
-      border-left: 1px solid $border_color;
       border-radius: 0 0 $standard_radius 0;
+      border-left: 1px solid $dark_border_color;
     }
   }
 }
