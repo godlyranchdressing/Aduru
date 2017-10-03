@@ -19,7 +19,7 @@
 /* GLOBALS */
 $font-size: 11;
 $menu_slice: 16 16 16 16;
-$font-family: Roboto, Cantarell, Sans-Serif;
+$font-family: Roboto, Cantarell, Ubuntu, Sans-Serif;
 $_wm_border: if($variant == "light", transparentize(black, 0.77), transparentize($border_color, 0.1));
 $_shadow_border: 0 2px 4px 1px transparentize(black, 0.5), 0 0 0 1px $_wm_border;
 
@@ -635,7 +635,7 @@ StScrollBar {
 /* Popovers/Menus */
 .popup-menu {
   min-width: 15em;
-  border-radius: $standard_radius;
+  border-radius: $window_radius;
 
   //defined globally in the TOP BAR
   .popup-sub-menu {
@@ -711,7 +711,7 @@ StScrollBar {
 
 .candidate-popup-boxpointer,
 .popup-menu-boxpointer {
-  -arrow-border-radius: 6px;
+  -arrow-border-radius: $window_radius;
   -arrow-background-color: $base_color;
   -arrow-border-width: 1px;
   -arrow-border-color: $border_color;
@@ -1758,10 +1758,10 @@ StScrollBar {
 
 .dash-label {
   //osd tooltip
-  border-radius: 7px;
+  border-radius: $standard_radius;
   padding: 4px 12px;
   color: $light_fg_color;
-  background-color: $dark_base_color;
+  background-color: transparentize($dark_base_color, 0.15);
   border: 1px solid $dark_border_color;
   text-align: center;
   -x-offset: 8px;
@@ -2061,6 +2061,7 @@ StScrollBar {
 
   .notification-button {
     padding: 4px 4px 5px;
+    border-right: 1px solid $dark_border_color;
     border-color: $dark_border_color;
     spacing: 0px;
   }
@@ -2088,12 +2089,11 @@ StScrollBar {
 
     &:first-child {
       border-radius: 0 0 0 $standard_radius;
-      border-right: 1px solid $dark_border_color;
     }
 
     &:last-child {
       border-radius: 0 0 $standard_radius 0;
-      border-left: 1px solid $dark_border_color;
+      border-left-style: none;
     }
   }
 }
@@ -2224,8 +2224,8 @@ StScrollBar {
 $legacy_icon_size: 24px;
 
 .legacy-tray {
-  background-color: $bg_color;
-  border: 1px solid $border_color;
+  background-color: $dark_bg_color;
+  border: 1px solid $dark_border_color;
   border-bottom-width: 0;
 
   &:ltr {
@@ -2249,7 +2249,7 @@ $legacy_icon_size: 24px;
 
   &:focus,
   &:hover {
-    background-color: transparentize($fg_color, 0.9);
+    background-color: transparentize($light_fg_color, 0.9);
   }
 }
 

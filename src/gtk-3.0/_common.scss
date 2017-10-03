@@ -1997,6 +1997,7 @@ headerbar {
       @if $buttons == "osx" {
         min-height: 0;
         min-width: 0;
+        color: transparent;
       }
       @else {
         min-height: 26px;
@@ -2048,6 +2049,15 @@ headerbar {
       &, &.flat, &.titlebutton {
         color: $headerbar_fg_color;
       }
+
+      &:disabled {
+        @include button(insensitive, $headerbar_bg_color, $headerbar_fg_color);
+
+        &:active,
+        &:checked {
+          @include button(insensitive-active, $headerbar_bg_color, $headerbar_fg_color);
+        }
+      }
     }
 
     @include button(undecorated);
@@ -2076,6 +2086,15 @@ headerbar {
         &:active,
         &:checked {
           @include button(active, $b_color, white);
+        }
+
+        &:disabled {
+          @include button(insensitive, $b_color, white);
+
+          &:active,
+          &:checked {
+            @include button(insensitive-active, $b_color, white);
+          }
         }
 
         &:backdrop {
@@ -2230,6 +2249,26 @@ headerbar {
         border-top-left-radius: $window_radius;
         border-top-right-radius: $window_radius;
       }
+    }
+  }
+
+  &:first-child {
+    border-radius: $window_radius 0 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 $window_radius 0 0;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    border-radius: $window_radius $window_radius 0 0;
+  }
+}
+
+window.maximized {
+  headerbar {
+    &, &.titlebar, &.default-decoration, &:not(.titlebar).default-decoration {
+      border-radius: 0;
     }
   }
 }
@@ -4454,7 +4493,7 @@ levelbar {
     border-radius: $standard_radius;
 
     &.low {
-      box-shadow: inset 0 0 0 1px _border_color($warning_color);
+      border-color: inset 0 0 0 1px _border_color($warning_color);
       background-color: $warning_color;
 
       &:backdrop {
@@ -4664,6 +4703,10 @@ row {
 
   &:selected {
     box-shadow: inset 0 1px _border_color($primary_color), inset 0 -1px _border_color($primary_color);
+
+    &:first-child{
+      box-shadow: inset 0 -1px _border_color($primary_color);
+    }
 
     &:backdrop {
       box-shadow: none;
@@ -5688,14 +5731,16 @@ button.titlebutton {
         background-image: url("assets/titlebutton-#{$s}.png");
 
         @each $as in "hover", "active", "backdrop" {
-          @if $as == "backdrop" and $darker == "true" or $variant == "dark" {
-            &:#{$as} {
-              background-image: url("assets/titlebutton-#{$s}-#{$as}-dark.png");
+          @if $as == "backdrop" {
+            @if $darker == true or $variant == "dark" {
+              &:#{$as} {
+                background-image: url("assets/titlebutton-#{$s}-#{$as}-dark.png");
+              }
             }
-          }
-          @else {
-            &:#{$as} {
-              background-image: url("assets/titlebutton-#{$s}-#{$as}.png");
+            @else {
+              &:#{$as} {
+                background-image: url("assets/titlebutton-#{$s}-#{$as}.png");
+              }
             }
           }
         }
@@ -5851,4 +5896,112 @@ stackswitcher button.text-button.circular {
   min-width: $large_size;
   min-height: $large_size;
   padding: 0;
+}
+
+headerbar.titlebar buttonbox.horizontal.linked button.toolbar-primary-buttons-software {
+  $_insensitive_fg_color: TBA;
+  $_fg_color: TBA;
+  $_backdrop_fg_color: TBA;
+  $_backdrop_bg_color: TBA;
+
+  @if $darker == true {
+    $_insensitive_fg_color: $light_insensitive_fg_color;
+    $_fg_color: $light_fg_color;
+    $_backdrop_fg_color: $light_backdrop_fg_color;
+    $_backdrop_bg_color: $light_backdrop_bg_color;
+  }
+  @else {
+    $_insensitive_fg_color: $insensitive_fg_color;
+    $_fg_color: $fg_color;
+    $_backdrop_fg_color: $backdrop_fg_color;
+    $_backdrop_bg_color: $backdrop_bg_color;
+  }
+
+  border-radius: 0;
+  color: $_insensitive_fg_color;
+  box-shadow: inset 0 0 0 0 transparent;
+  border-width: 0;
+  margin: 0 4px;
+  padding: 4px 12px;
+
+  &, &:hover, &:active, &:checked {
+    @include button(undecorated);
+  }
+
+  &:hover {
+    color: mix($_insensitive_fg_color, $_fg_color, 50%);
+    box-shadow: inset 0 -2px $_insensitive_fg_color;
+  }
+
+  &:backdrop {
+    color: mix($_backdrop_fg_color, $_backdrop_bg_color, 60%);
+
+    &:checked {
+      color: $_backdrop_fg_color;
+    }
+  }
+
+  &:checked {
+    color: $_fg_color;
+    font-weight: bold;
+    box-shadow: inset 0 -2px $primary_color;
+  }
+
+  .counter-label {
+    color: #4a90d9;
+    background: white;
+  }
+}
+
+headerbar stackswitcher.linked.stack-switcher.horizontal {
+  // TODO: replicate adwaita's tabs
+  button.text-button {
+    $_insensitive_fg_color: TBA;
+    $_fg_color: TBA;
+    $_backdrop_fg_color: TBA;
+    $_backdrop_bg_color: TBA;
+
+    @if $darker == true {
+      $_insensitive_fg_color: $light_insensitive_fg_color;
+      $_fg_color: $light_fg_color;
+      $_backdrop_fg_color: $light_backdrop_fg_color;
+      $_backdrop_bg_color: $light_backdrop_bg_color;
+    }
+    @else {
+      $_insensitive_fg_color: $insensitive_fg_color;
+      $_fg_color: $fg_color;
+      $_backdrop_fg_color: $backdrop_fg_color;
+      $_backdrop_bg_color: $backdrop_bg_color;
+    }
+
+    color: $_insensitive_fg_color;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 0 transparent;
+    border-width: 0;
+    margin: 0 4px;
+    padding: 4px 12px;
+
+    &, &:hover, &:active, &:checked {
+      @include button(undecorated);
+    }
+
+    &:hover {
+      color: mix($_insensitive_fg_color, $_fg_color, 50%);
+      box-shadow: inset 0 -2px $_insensitive_fg_color;
+    }
+
+    &:backdrop {
+      color: mix($_backdrop_fg_color, $_backdrop_bg_color, 60%);
+
+      &:checked {
+        color: $_backdrop_fg_color;
+      }
+    }
+
+    &:checked {
+      color: $_fg_color;
+      font-weight: bold;
+      box-shadow: inset 0 -2px $primary_color;
+    }
+  }
 }
